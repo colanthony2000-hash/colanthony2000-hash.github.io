@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://colanthony2000-hash.github.io/sitemap.xml
