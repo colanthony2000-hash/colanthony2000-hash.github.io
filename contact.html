@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | JENECONK - Get a Free System Audit</title>
+    <meta name="description"
+        content="Contact Jeneconk Integrated for school digitization, CBT platforms, and training.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Page Specific Styles -->
+    <style>
+        /* Fix for the Blue Contact Info Side */
+        .contact-info-side {
+            background: var(--primary-blue);
+            color: white;
+            padding: 60px 40px;
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            box-shadow: var(--shadow-soft);
+            box-sizing: border-box;
+        }
+
+        /* Mobile Layout Fix */
+        @media (max-width: 768px) {
+            .contact-info-side {
+                padding: 40px 30px;
+                margin-top: 40px;
+            }
+
+            .split-section {
+                flex-direction: column !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="JENECONK Logo">
+                    <span class="brand-text">
+                        <span>JENECONK</span> <span>INTEGRATED</span>
+                    </span>
+                </a>
+
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="solutions.html">Solutions</a>
+                    <a href="training.html">Training</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <a href="https://cbt.jeneconk.com" target="_blank" class="btn-portal">
+                        <i class="fas fa-laptop"></i> CBT Portal
+                    </a>
+                </div>
+
+                <div class="mobile-menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="section-tag">Get Started</span>
+                <h1>Let's Talk About Your School</h1>
+                <p>Ready to digitize? Request a free audit or demo of our systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="split-section">
+
+                <!-- LEFT SIDE: Contact Form -->
+                <div class="split-content">
+                    <h2>Request a Free Audit</h2>
+                    <p style="margin-bottom: 30px;">Fill out the form and we'll get back to you within 24 hours.</p>
+
+                    <form id="contactForm" style="display: grid; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name</label>
+                            <input type="text" name="name" required autocomplete="off"
+                                style="width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">School /
+                                Organization</label>
+                            <input type="text" name="school" required autocomplete="off"
+                                style="width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address</label>
+                            <input type="email" name="email" required autocomplete="off"
+                                style="width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">What do you
+                                need?</label>
+                            <select name="need"
+                                style="width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; background: white; font-family: inherit;">
+                                <option>SchoolOS (Report Generation)</option>
+                                <option>CBT Pro (Exam Platform)</option>
+                                <option>AdminFlow (Document Automation)</option>
+                                <option>General Consultation</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">Submit
+                            Request</button>
+                    </form>
+
+                    <!-- SUCCESS MESSAGE (Hidden by default) -->
+                    <div id="successMessage"
+                        style="display: none; text-align: center; padding: 40px 20px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 12px; margin-top: 20px;">
+                        <i class="fas fa-check-circle"
+                            style="font-size: 3rem; color: #22C55E; margin-bottom: 15px;"></i>
+                        <h3 style="color: #166534;">Thank You!</h3>
+                        <p style="color: var(--text-muted);">Your request has been submitted successfully. We will
+                            contact you shortly.</p>
+
+                        <!-- NEW BUTTON ADDED HERE -->
+                        <button id="resetBtn" class="btn btn-outline"
+                            style="margin-top: 20px; border-color: #166534; color: #166534;">
+                            Submit Another Request
+                        </button>
+                    </div>
+
+                    <!-- ERROR MESSAGE (Hidden by default) -->
+                    <div id="errorMessage"
+                        style="display: none; text-align: center; padding: 20px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; margin-top: 20px; color: #991B1B;">
+                        <p>Oops! Something went wrong. Please check your internet connection and try again.</p>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE: Contact Info -->
+                <div class="contact-info-side">
+                    <h2 style="color: white; margin-bottom: 40px;">Contact Information</h2>
+
+                    <div style="margin-bottom: 30px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div
+                                style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-envelope fa-lg"></i>
+                            </div>
+                            <div>
+                                <span style="opacity: 0.8; font-size: 0.9rem;">Email Us</span>
+                                <p style="font-size: 1.1rem; font-weight: 600; margin: 0;">info@jeneconk.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div
+                                style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fab fa-whatsapp fa-lg"></i>
+                            </div>
+                            <div>
+                                <span style="opacity: 0.8; font-size: 0.9rem;">WhatsApp</span>
+                                <p style="font-size: 1.1rem; font-weight: 600; margin: 0;">+234 8154008438</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div
+                                style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-map-marker-alt fa-lg"></i>
+                            </div>
+                            <div>
+                                <span style="opacity: 0.8; font-size: 0.9rem;">Location</span>
+                                <p style="font-size: 1.1rem; font-weight: 600; margin: 0;">Port Harcourt, Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border-color: rgba(255,255,255,0.2); margin: 40px 0;">
+
+                    <h4 style="margin-bottom: 15px;">Free Offers:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i
+                                class="fas fa-check-circle"></i> Free School System Audit</li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i
+                                class="fas fa-check-circle"></i> Free CBT Demo Setup</li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i
+                                class="fas fa-check-circle"></i> Free Consultation Call</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">
+                        <img src="logo.png" alt="JENECONK Logo" style="width: 40px; height: 40px; border-radius: 8px;">
+                        <span style="color:white; font-weight:bold; margin-left:10px;">JENECONK</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #94A3B8;">
+                        Builders of Automated Systems for Schools & Organizations.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="solutions.html">Systems & Products</a></li>
+                        <li><a href="training.html">Training Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="contact-item"><i class="fas fa-envelope"></i> <span>info@jeneconk.com</span></div>
+                    <div class="contact-item"><i class="fab fa-whatsapp"></i> <span>+234 8154008438</span></div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> JENECONK INTEGRATED GLOBAL SOLUTIONS LTD.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- GOOGLE SHEET BACKEND SCRIPT -->
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contactForm");
+            const successMsg = document.getElementById("successMessage");
+            const errorMsg = document.getElementById("errorMessage");
+            const submitBtn = document.getElementById("submitBtn");
+            const resetBtn = document.getElementById("resetBtn"); // New Button
+
+            // ==================================================
+            // IMPORTANT: PASTE YOUR GOOGLE SCRIPT URL BELOW
+            // ==================================================
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec';
+            // ==================================================
+
+            async function handleSubmit(event) {
+                event.preventDefault(); // Stop page refresh
+
+                // Reset UI states
+                successMsg.style.display = "none";
+                errorMsg.style.display = "none";
+
+                // Capture form data into an Object
+                const formData = new FormData(event.target);
+                const data = {
+                    name: formData.get('name'),
+                    school: formData.get('school'),
+                    email: formData.get('email'),
+                    need: formData.get('need')
+                };
+
+                submitBtn.innerHTML = "Sending...";
+                submitBtn.disabled = true;
+
+                try {
+                    // Send data to Google Sheet
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Required for Google Apps Script
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    // Show success message & hide form
+                    form.style.display = "none";
+                    successMsg.style.display = "block";
+                    form.reset();
+
+                } catch (error) {
+                    // Handle network errors
+                    console.error(error);
+                    errorMsg.style.display = "block";
+                } finally {
+                    // Reset button
+                    submitBtn.innerHTML = "Submit Request";
+                    submitBtn.disabled = false;
+                }
+            }
+
+            // NEW: Handle the "Submit Another Request" button click
+            resetBtn.addEventListener("click", function () {
+                successMsg.style.display = "none"; // Hide Success Message
+                form.style.display = "grid";       // Show Form again
+            });
+
+            form.addEventListener("submit", handleSubmit);
+        });
+    </script>
+</body>
+
+</html>
