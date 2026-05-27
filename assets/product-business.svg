@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">JENECONK AdminFlow preview</title>
+  <desc id="desc">Business document automation placeholder.</desc>
+  <rect width="900" height="560" fill="#0f172a"/>
+  <rect x="86" y="50" width="330" height="460" rx="16" fill="#ffffff"/>
+  <text x="126" y="112" font-family="Inter, Arial" font-size="28" font-weight="800" fill="#1e3a8a">AdminFlow</text>
+  <rect x="126" y="150" width="210" height="12" rx="6" fill="#f2b41b"/>
+  <rect x="126" y="198" width="238" height="13" rx="6" fill="#cbd5e1"/>
+  <rect x="126" y="232" width="196" height="13" rx="6" fill="#cbd5e1"/>
+  <rect x="126" y="266" width="232" height="13" rx="6" fill="#cbd5e1"/>
+  <rect x="126" y="332" width="120" height="120" rx="12" fill="#eff6ff"/>
+  <rect x="486" y="102" width="286" height="96" rx="14" fill="#1e3a8a"/>
+  <rect x="486" y="232" width="286" height="96" rx="14" fill="#5c4033"/>
+  <rect x="486" y="362" width="286" height="96" rx="14" fill="#f2b41b"/>
+  <text x="520" y="160" font-family="Inter, Arial" font-size="22" font-weight="800" fill="#ffffff">CV Generator</text>
+  <text x="520" y="290" font-family="Inter, Arial" font-size="22" font-weight="800" fill="#ffffff">Proposal Builder</text>
+  <text x="520" y="420" font-family="Inter, Arial" font-size="22" font-weight="800" fill="#0f172a">Certificates</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">JENECONK ICT solutions preview</title>
+  <desc id="desc">Laptop and digital workspace setup placeholder.</desc>
+  <rect width="900" height="560" fill="#fff7ed"/>
+  <rect x="118" y="106" width="510" height="292" rx="18" fill="#0f172a"/>
+  <rect x="154" y="142" width="438" height="214" rx="10" fill="#1e3a8a"/>
+  <rect x="88" y="412" width="570" height="32" rx="16" fill="#5c4033"/>
+  <rect x="690" y="170" width="92" height="190" rx="18" fill="#ffffff" stroke="#dce4ea"/>
+  <circle cx="736" cy="318" r="14" fill="#f2b41b"/>
+  <rect x="208" y="194" width="206" height="18" rx="9" fill="#ffffff"/>
+  <rect x="208" y="240" width="254" height="14" rx="7" fill="#ffffff" opacity=".65"/>
+  <rect x="208" y="278" width="198" height="14" rx="7" fill="#ffffff" opacity=".45"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">JENECONK training programs preview</title>
+  <desc id="desc">Digital skills and AI productivity training placeholder.</desc>
+  <rect width="900" height="560" fill="#f8fafc"/>
+  <rect x="70" y="66" width="760" height="428" rx="18" fill="#1e3a8a"/>
+  <circle cx="215" cy="226" r="74" fill="#f2b41b"/>
+  <rect x="340" y="146" width="310" height="24" rx="12" fill="#ffffff"/>
+  <rect x="340" y="204" width="390" height="18" rx="9" fill="#ffffff" opacity=".74"/>
+  <rect x="340" y="248" width="330" height="18" rx="9" fill="#ffffff" opacity=".5"/>
+  <rect x="136" y="346" width="162" height="72" rx="12" fill="#ffffff"/>
+  <rect x="334" y="346" width="162" height="72" rx="12" fill="#ffffff"/>
+  <rect x="532" y="346" width="162" height="72" rx="12" fill="#ffffff"/>
+  <text x="164" y="390" font-family="Inter, Arial" font-size="18" font-weight="800" fill="#0f172a">AI</text>
+  <text x="362" y="390" font-family="Inter, Arial" font-size="18" font-weight="800" fill="#0f172a">Excel</text>
+  <text x="560" y="390" font-family="Inter, Arial" font-size="18" font-weight="800" fill="#0f172a">Coding</text>
+</svg>

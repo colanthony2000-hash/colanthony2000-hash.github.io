@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">JENECONK Education Suite preview</title>
+  <desc id="desc">Teacher dashboard placeholder for lesson notes and school reports.</desc>
+  <rect width="900" height="560" fill="#f8fafc"/>
+  <rect x="58" y="54" width="784" height="452" rx="18" fill="#ffffff" stroke="#dce4ea"/>
+  <rect x="58" y="54" width="784" height="74" rx="18" fill="#1e3a8a"/>
+  <circle cx="99" cy="91" r="12" fill="#f2b41b"/>
+  <circle cx="130" cy="91" r="12" fill="#ffffff" opacity=".4"/>
+  <text x="175" y="99" font-family="Inter, Arial" font-size="24" font-weight="800" fill="#ffffff">Education Suite</text>
+  <rect x="96" y="166" width="310" height="286" rx="14" fill="#eff6ff"/>
+  <text x="126" y="214" font-family="Inter, Arial" font-size="30" font-weight="800" fill="#0f172a">AI Lesson Notes</text>
+  <rect x="126" y="248" width="220" height="14" rx="7" fill="#1e3a8a" opacity=".25"/>
+  <rect x="126" y="282" width="250" height="14" rx="7" fill="#1e3a8a" opacity=".18"/>
+  <rect x="126" y="316" width="190" height="14" rx="7" fill="#1e3a8a" opacity=".18"/>
+  <rect x="454" y="166" width="290" height="74" rx="12" fill="#ffffff" stroke="#dce4ea"/>
+  <rect x="454" y="262" width="290" height="74" rx="12" fill="#ffffff" stroke="#dce4ea"/>
+  <rect x="454" y="358" width="290" height="74" rx="12" fill="#ffffff" stroke="#dce4ea"/>
+  <text x="482" y="211" font-family="Inter, Arial" font-size="20" font-weight="700" fill="#0f172a">Reports</text>
+  <text x="482" y="307" font-family="Inter, Arial" font-size="20" font-weight="700" fill="#0f172a">Teacher Dashboard</text>
+  <text x="482" y="403" font-family="Inter, Arial" font-size="20" font-weight="700" fill="#0f172a">Admin Roles</text>
+</svg>
