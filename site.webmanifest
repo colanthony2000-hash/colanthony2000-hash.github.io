@@ -1,0 +1,16 @@
+{
+  "name": "JENECONK Integrated Global Solutions Ltd",
+  "short_name": "JENECONK",
+  "description": "AI productivity, education technology, CBT, training, and digital transformation systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfcfd",
+  "theme_color": "#07111f",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "40x38",
+      "type": "image/png"
+    }
+  ]
+}
