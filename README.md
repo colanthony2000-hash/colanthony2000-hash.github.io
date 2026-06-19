@@ -10,7 +10,7 @@ Static, GitHub-hostable website for the JENECONK technology ecosystem.
 - `training.html` - Training programs
 - `contact.html` - Contact form and business identity
 - `education-suite.html` - Education Suite launch placeholder
-- `business-suite.html` - Business Suite / AdminFlow placeholder
+- `business-suite.html` - Business Suite placeholder
 - `cbt-portal.html` - CBT Portal placeholder
 
 ## Preview
