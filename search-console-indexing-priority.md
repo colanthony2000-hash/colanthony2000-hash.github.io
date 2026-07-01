@@ -15,6 +15,9 @@ Use Google Search Console after each public deployment. Submit `https://jeneconk
 - `https://jeneconk.com/contact.html`
 - `https://jeneconk.com/training.html`
 - `https://jeneconk.com/solutions.html`
+- `https://jeneconk.com/ict-solutions.html`
+
+Note: if `ict-solutions.html` appears as a primary indexed result before the homepage or Edu Suite pages, request recrawling for the homepage, Education hub, Resources hub, Tools hub, and ICT page together. The ICT page should remain useful, but it should act as a gateway into the main JENECONK ecosystem.
 
 ## Education cluster
 
