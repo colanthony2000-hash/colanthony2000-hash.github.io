@@ -42,6 +42,23 @@ Use Google Search Console after each public deployment. Submit `https://jeneconk
 - `https://jeneconk.com/edu-suite-for-private-schools.html`
 - `https://jeneconk.com/edu-suite-for-government-schools.html`
 
+## Location pages
+
+- `https://jeneconk.com/school-management-software-lagos.html`
+- `https://jeneconk.com/school-management-software-abuja.html`
+- `https://jeneconk.com/school-management-software-port-harcourt.html`
+- `https://jeneconk.com/school-management-software-kano.html`
+- `https://jeneconk.com/school-management-software-enugu.html`
+- `https://jeneconk.com/school-management-software-yobe-state-damaturu.html`
+
+## Industry pages
+
+- `https://jeneconk.com/solutions-for-churches.html`
+- `https://jeneconk.com/solutions-for-ngos.html`
+- `https://jeneconk.com/solutions-for-hotels.html`
+- `https://jeneconk.com/solutions-for-smes.html`
+- `https://jeneconk.com/solutions-for-government.html`
+
 ## Tools and resources
 
 - `https://jeneconk.com/waec-grade-calculator.html`
