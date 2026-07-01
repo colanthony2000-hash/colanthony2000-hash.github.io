@@ -130,6 +130,11 @@ textarea:focus-visible {
   background: var(--blue);
 }
 
+.nav .nav-cta.tools {
+  background: #15803d;
+  color: #fff;
+}
+
 .nav-toggle {
   display: none;
   width: 42px;
@@ -1486,6 +1491,144 @@ textarea { resize: vertical; }
 .site-footer strong { color: #fff; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 20px; }
 
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.breadcrumb a { color: var(--blue); }
+
+.pillar-grid,
+.resource-grid,
+.tool-grid,
+.seo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pillar-card,
+.resource-card,
+.tool-card,
+.seo-card,
+.link-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 24px;
+  border: 1px solid rgba(15,35,65,.1);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #fff, #f7fafc);
+  box-shadow: 0 16px 42px rgba(7,17,31,.075);
+}
+
+.pillar-card {
+  min-height: 310px;
+  border-top: 5px solid var(--blue);
+}
+
+.pillar-card.education { border-top-color: #0f766e; }
+.pillar-card.business { border-top-color: #c9972f; }
+.pillar-card.training { border-top-color: #9a5427; }
+.pillar-card.tools { border-top-color: #15803d; }
+
+.pillar-card span,
+.resource-card span,
+.tool-card span,
+.seo-card span {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.pillar-card h3,
+.resource-card h3,
+.tool-card h3,
+.seo-card h3 {
+  margin-top: 10px;
+}
+
+.pillar-card p,
+.resource-card p,
+.tool-card p,
+.seo-card p,
+.link-card p {
+  color: var(--muted);
+}
+
+.pillar-card a,
+.resource-card a,
+.tool-card a,
+.seo-card a,
+.link-card a {
+  margin-top: auto;
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.spotlight-band {
+  background: #06101d;
+  color: #fff;
+}
+
+.spotlight-band p { color: #cbd5e1; }
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.link-card {
+  min-height: 160px;
+  padding: 20px;
+}
+
+.mini-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 18px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: #0f294f;
+  color: #fff !important;
+  font-weight: 900;
+}
+
+.tool-card.coming-soon {
+  opacity: .82;
+}
+
+.faq-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-stack article {
+  padding: 22px;
+  border: 1px solid rgba(15,35,65,.1);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.faq-stack p { color: var(--muted); margin-bottom: 0; }
+
 @media (max-width: 980px) {
   .site-header { padding: 14px; }
   .nav-toggle { display: block; }
@@ -1524,6 +1667,12 @@ textarea { resize: vertical; }
   .kpakam-proof-grid,
   .course-grid,
   .pillars,
+  .pillar-grid,
+  .resource-grid,
+  .tool-grid,
+  .seo-grid,
+  .spotlight-grid,
+  .link-grid,
   .intent-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1558,6 +1707,12 @@ textarea { resize: vertical; }
   .kpakam-proof-grid,
   .course-grid,
   .pillars,
+  .pillar-grid,
+  .resource-grid,
+  .tool-grid,
+  .seo-grid,
+  .spotlight-grid,
+  .link-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }
