@@ -28,7 +28,7 @@
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a>
     <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation"><span></span><span></span><span></span></button>
     <nav class="nav" data-nav>
-      <a href="education.html" aria-current="page">Education</a><a href="business.html">Business</a><a href="training.html">Training</a><a href="tools.html">Tools</a><a href="resources.html">Resources</a><a href="about.html">Company</a><a class="nav-cta edu" href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a class="nav-cta" href="https://jeneconk-ai-academy.vercel.app" target="_blank" rel="noreferrer">AI Academy</a><a class="nav-cta alt" href="cbt-portal.html">CBT Setup</a>
+      <a href="education.html" aria-current="page">Education</a><a href="business.html">Business</a><a href="training.html">Training</a><a href="tools.html">Tools</a><a href="resources.html">Resources</a><a href="about.html">Company</a><a class="nav-cta edu" href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a class="nav-cta" href="https://academy.jeneconk.com" target="_blank" rel="noreferrer">AI Academy</a><a class="nav-cta alt" href="cbt-portal.html">CBT Setup</a>
     </nav>
   </header>
   <main>
@@ -38,22 +38,35 @@
         <p class="eyebrow">Free school planning tool</p>
         <h1>School timetable generator for classes, teachers, subjects, and periods.</h1>
         <p>Build a clean starting point for your school timetable before refining it with your academic team. This page supports schools searching for timetable planning, school schedule generation, subject allocation, teacher workload planning, and academic administration support.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Open Edu Suite 2.0</a><a class="btn btn-secondary" href="https://jeneconk-ai-academy.vercel.app" target="_blank" rel="noreferrer">AI Academy Training</a></div>
+        <div class="hero-actions"><a class="btn btn-primary" href="tools/class-timetable-generator/">Open full timetable app</a><a class="btn btn-secondary" href="https://academy.jeneconk.com" target="_blank" rel="noreferrer">AI Academy Training</a></div>
       </div>
     </section>
     <section class="section-pad">
       <div class="container split-grid">
-        <form class="contact-form" oninput="slotOut.textContent = `${days.value} days × ${periods.value} periods = ${Number(days.value || 0) * Number(periods.value || 0)} timetable slots per class`">
+        <form class="contact-form" id="quickTimetableForm">
+          <label>Class or arm <input id="className" type="text" value="JSS 1A" placeholder="e.g. JSS 1A"></label>
           <label>Number of school days per week <input id="days" type="number" min="1" max="7" value="5"></label>
           <label>Periods per day <input id="periods" type="number" min="1" max="12" value="8"></label>
-          <label>Class or arm <input type="text" placeholder="e.g. JSS 1A"></label>
-          <label>Core subjects <textarea rows="4" placeholder="Mathematics, English, Basic Science, Social Studies..."></textarea></label>
+          <label>Break period number <input id="breakPeriod" type="number" min="0" max="12" value="4"><small>Use 0 if there is no fixed break period.</small></label>
+          <label>Subjects <textarea id="subjects" rows="4" placeholder="Mathematics, English, Basic Science, Social Studies, Computer Studies">Mathematics, English, Basic Science, Social Studies, Computer Studies, Civic Education, Agricultural Science</textarea></label>
+          <label>Teachers, optional <textarea id="teachers" rows="3" placeholder="Mr Ade, Mrs Okoro, Miss John">Mr Ade, Mrs Okoro, Miss John</textarea></label>
           <strong id="slotOut" style="font-size:20px;color:var(--blue)">5 days × 8 periods = 40 timetable slots per class</strong>
+          <div class="hero-actions"><button class="btn btn-primary" type="submit">Generate quick timetable</button><button class="btn btn-secondary" type="button" id="printTimetable">Print preview</button></div>
         </form>
         <div class="capability-list">
-          <div><strong>What to plan first</strong><span>List classes, subjects, teachers, rooms, break periods, assembly days, practical lessons, and subjects that need double periods.</span></div>
-          <div><strong>Where JENECONK helps next</strong><span>Use Edu Suite 2.0 for lesson documentation and academic content, then use JENECONK training for administrators who need AI and school productivity skills.</span><a class="mini-cta" href="https://jeneconk-ai-academy.vercel.app/register/admin-training" target="_blank" rel="noreferrer">Administrators Training</a></div>
+          <div><strong>What to plan first</strong><span>List classes, subjects, teachers, rooms, break periods, assembly days, practical lessons, and subjects that need double periods.</span><a class="mini-cta" href="tools/class-timetable-generator/">Open advanced generator</a></div>
+          <div><strong>Where JENECONK helps next</strong><span>Use Edu Suite 2.0 for lesson documentation and academic content, then use JENECONK training for administrators who need AI and school productivity skills.</span><a class="mini-cta" href="https://academy.jeneconk.com/register/admin-training" target="_blank" rel="noreferrer">Administrators Training</a></div>
         </div>
+      </div>
+    </section>
+    <section class="section-pad" id="timetable-preview">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Generated preview</p>
+          <h2>Quick timetable draft.</h2>
+          <p>Use this fast preview to test your subject spread. For multiple classes, teacher conflict checks, PDF export, Excel export, and deeper rules, open the full timetable app.</p>
+        </div>
+        <div id="generatedTimetable" class="table-scroll" aria-live="polite"></div>
       </div>
     </section>
     <section class="section-pad split-band">
@@ -71,7 +84,59 @@
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>AI-powered education, business, training, tools, and digital transformation systems.</p></div><div><strong>Products</strong><a href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a href="https://jeneconk-ai-academy.vercel.app" target="_blank" rel="noreferrer">AI Academy</a><a href="school-timetable-generator.html">Timetable Generator</a><a href="cbt-portal.html">CBT Setup</a></div><div><strong>Ecosystem</strong><a href="education.html">Education</a><a href="training.html">Training</a><a href="tools.html">Tools</a><a href="resources.html">Resources</a></div><div><strong>Company</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 8154008438</a><span>Port Harcourt, Nigeria</span></div></div></footer>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>AI-powered education, business, training, tools, and digital transformation systems.</p></div><div><strong>Products</strong><a href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a href="https://academy.jeneconk.com" target="_blank" rel="noreferrer">AI Academy</a><a href="school-timetable-generator.html">Timetable Generator</a><a href="cbt-portal.html">CBT Setup</a></div><div><strong>Ecosystem</strong><a href="education.html">Education</a><a href="training.html">Training</a><a href="tools.html">Tools</a><a href="resources.html">Resources</a></div><div><strong>Company</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 8154008438</a><span>Port Harcourt, Nigeria</span></div></div></footer>
   <script src="assets/main.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("quickTimetableForm");
+      const output = document.getElementById("generatedTimetable");
+      const slotOut = document.getElementById("slotOut");
+      const printButton = document.getElementById("printTimetable");
+      const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      const splitList = (value) => value.split(",").map((item) => item.trim()).filter(Boolean);
+      const escapeHtml = (value) => value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+
+      function renderTimetable(event) {
+        if (event) event.preventDefault();
+        const days = Math.max(1, Math.min(7, Number(document.getElementById("days").value || 5)));
+        const periods = Math.max(1, Math.min(12, Number(document.getElementById("periods").value || 8)));
+        const breakPeriod = Math.max(0, Math.min(periods, Number(document.getElementById("breakPeriod").value || 0)));
+        const className = document.getElementById("className").value.trim() || "Class Timetable";
+        const subjects = splitList(document.getElementById("subjects").value);
+        const teachers = splitList(document.getElementById("teachers").value);
+        slotOut.textContent = `${days} days × ${periods} periods = ${days * periods} timetable slots per class`;
+
+        if (!subjects.length) {
+          output.innerHTML = '<p class="notice">Add at least one subject to generate a timetable preview.</p>';
+          return;
+        }
+
+        let subjectIndex = 0;
+        const headers = Array.from({ length: periods }, (_, index) => `<th scope="col">P${index + 1}</th>`).join("");
+        const rows = Array.from({ length: days }, (_, dayIndex) => {
+          const cells = Array.from({ length: periods }, (_, periodIndex) => {
+            if (breakPeriod && periodIndex + 1 === breakPeriod) {
+              return '<td><strong>Break</strong><small>Fixed</small></td>';
+            }
+            const subject = subjects[subjectIndex % subjects.length];
+            const teacher = teachers.length ? teachers[subjectIndex % teachers.length] : "";
+            subjectIndex += 1;
+            return `<td><strong>${escapeHtml(subject)}</strong>${teacher ? `<small>${escapeHtml(teacher)}</small>` : ""}</td>`;
+          }).join("");
+          return `<tr><th scope="row">${dayNames[dayIndex]}</th>${cells}</tr>`;
+        }).join("");
+
+        output.innerHTML = `<h3>${escapeHtml(className)}</h3><table class="data-table"><thead><tr><th scope="col">Day / Period</th>${headers}</tr></thead><tbody>${rows}</tbody></table><p class="form-note">This is a draft. Review teacher load, rooms, double periods, assembly, and exam-subject balance before publishing.</p>`;
+      }
+
+      form.addEventListener("input", renderTimetable);
+      form.addEventListener("submit", renderTimetable);
+      printButton.addEventListener("click", function () {
+        renderTimetable();
+        window.print();
+      });
+      renderTimetable();
+    })();
+  </script>
 </body>
 </html>
