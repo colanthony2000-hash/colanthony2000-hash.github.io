@@ -43,4 +43,7 @@
 .timeline article::before { counter-increment: step; content: counter(step); position: absolute; left: 24px; top: 24px; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 999px; background: var(--brand-blue); color: #fff; font-weight: 900; }
 .story-cta { background: linear-gradient(135deg, #07111f, #1e3a8a); color: #fff; }
 .story-cta p { color: #e5edf5; }
+.academy-hero { min-height: 660px; }
+.academy-gallery-feature img { min-height: 520px; }
+.academy-moments article { min-height: 140px; }
 @media (max-width: 860px) { .story-card-grid, .story-stat-grid, .scope-grid, .quote-grid, .story-two-col, .gallery-grid { grid-template-columns: 1fr; } .story-two-col.reverse > :first-child { order: 0; } .success-hero { min-height: 560px; background-position: center top; } }
