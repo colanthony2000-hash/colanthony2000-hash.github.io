@@ -24,6 +24,10 @@
 .story-two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr); gap: 46px; align-items: center; }
 .story-two-col.reverse > :first-child { order: 2; }
 .story-image { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); object-fit: cover; }
+.academy-video-card, .academy-feature-video { margin: 0; overflow: hidden; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.academy-feature-video { margin-bottom: 24px; }
+.story-video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #07111f; object-fit: cover; }
+.academy-video-card figcaption, .academy-feature-video figcaption { padding: 16px 18px; color: var(--muted); font-weight: 700; }
 .story-list { display: grid; gap: 12px; padding: 0; margin: 24px 0 0; list-style: none; }
 .story-list li { position: relative; padding-left: 30px; color: #253349; font-weight: 650; }
 .story-list li::before { content: ">"; position: absolute; left: 0; color: var(--brand-blue); font-weight: 900; }
