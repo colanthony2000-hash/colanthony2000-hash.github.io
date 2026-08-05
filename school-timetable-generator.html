@@ -52,7 +52,7 @@
           <label>Break period number <input id="breakPeriod" type="number" min="0" max="12" value="4"><small>Use 0 if there is no fixed break period.</small></label>
           <label>Subjects <textarea id="subjects" rows="4" placeholder="Mathematics, English, Basic Science, Social Studies, Computer Studies">Mathematics, English, Basic Science, Social Studies, Computer Studies, Civic Education, Agricultural Science</textarea></label>
           <label>Teachers, optional <textarea id="teachers" rows="3" placeholder="Mr Ade, Mrs Okoro, Miss John">Mr Ade, Mrs Okoro, Miss John</textarea></label>
-          <strong id="slotOut" style="font-size:20px;color:var(--blue)">5 days × 8 periods = 40 timetable slots per class</strong>
+          <strong id="slotOut" style="font-size:20px;color:var(--blue)">5 days x 8 periods = 40 timetable slots per class</strong>
           <div class="hero-actions"><button class="btn btn-primary" type="submit">Generate quick timetable</button><button class="btn btn-secondary" type="button" id="printTimetable">Print preview</button></div>
         </form>
         <div class="capability-list">
@@ -106,7 +106,7 @@
         const className = document.getElementById("className").value.trim() || "Class Timetable";
         const subjects = splitList(document.getElementById("subjects").value);
         const teachers = splitList(document.getElementById("teachers").value);
-        slotOut.textContent = `${days} days × ${periods} periods = ${days * periods} timetable slots per class`;
+        slotOut.textContent = `${days} days x ${periods} periods = ${days * periods} timetable slots per class`;
 
         if (!subjects.length) {
           output.innerHTML = '<p class="notice">Add at least one subject to generate a timetable preview.</p>';
