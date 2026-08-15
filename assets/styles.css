@@ -102,38 +102,29 @@ textarea:focus-visible {
 .nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
 
 .nav a {
-  padding: 9px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 11px;
   border-radius: var(--radius);
   color: #253349;
   font-weight: 650;
   font-size: 13px;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
 .nav a:hover,
 .nav a[aria-current="page"] { background: #eef4f3; color: var(--ink); }
 
-.nav .nav-cta {
-  background: var(--ink);
-  color: #fff;
-}
-
-.nav .nav-cta.edu {
-  background: linear-gradient(135deg, #0f766e, #1e3a8a);
-  color: #fff;
-}
-
-.nav .nav-cta.alt {
-  background: var(--blue);
-}
-
-.nav .nav-cta.tools {
-  background: #15803d;
-  color: #fff;
+.nav a:focus-visible {
+  outline: 3px solid rgba(30, 58, 138, .24);
+  outline-offset: 2px;
 }
 
 .nav-toggle {
@@ -1849,7 +1840,7 @@ textarea { resize: vertical; }
   padding: 18px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1200px) {
   .site-header { padding: 14px; }
   .nav-toggle { display: block; }
   .nav {
@@ -1867,7 +1858,12 @@ textarea { resize: vertical; }
     box-shadow: var(--shadow);
   }
   .nav.is-open { display: flex; }
-  .nav a { padding: 13px; }
+  .nav a {
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 46px;
+    padding: 13px;
+  }
 
   .hero-grid,
   .split-grid,
