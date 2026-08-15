@@ -418,7 +418,7 @@ ${schema.split("\n").map((line) => `  ${line}`).join("\n")}
   <footer class="site-footer">
     <div class="container footer-grid">
       <div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>AI-powered education, business, training, tools, and digital transformation systems.</p></div>
-      <div><strong>Products</strong><a href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a href="https://business.jeneconk.com" target="_blank" rel="noreferrer">Business Suite</a><a href="cbt-portal.html">CBT Setup</a><a href="kpakam.html">KPAKAM</a></div>
+      <div><strong>Products</strong><a href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="https://business.jeneconk.com" target="_blank" rel="noreferrer">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div>
       <div><strong>Ecosystem</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">Training</a><a href="tools.html">Tools</a><a href="resources.html" aria-current="page">Resources</a></div>
       <div><strong>Company</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 8154008438</a><span>Port Harcourt, Nigeria</span></div>
     </div>

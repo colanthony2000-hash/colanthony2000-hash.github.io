@@ -77,5 +77,5 @@ Note: if `ict-solutions.html` appears as a primary indexed result before the hom
 
 - Search result title should start with JENECONK or the exact page topic.
 - Homepage description should mention AI-powered education, business, training, tools, and digital transformation, not old church-administration copy.
-- Product names should be Edu Suite 2.0, Business Suite, CBT Setup, and KPAKAM.
+- Product names should be Edu Suite 2.0, JEMS, Business Suite, Smart Procurement, and CBT Setup Enquiry.
 - `cbt.jeneconk.com` and `food.jeneconk.com` should not be requested for indexing until their public strategy is settled.
