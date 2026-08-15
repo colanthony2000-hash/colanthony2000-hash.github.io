@@ -1738,6 +1738,12 @@ textarea { resize: vertical; }
   object-position: top center;
 }
 
+.lesson-note-feature > img {
+  object-fit: contain;
+  object-position: center;
+  background: #f7f4ed;
+}
+
 .pinterest-feature-copy {
   display: flex;
   flex-direction: column;
