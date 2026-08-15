@@ -34,7 +34,7 @@ function navigation(file, prefix) {
   const items = [
     ["education.html", "Education"],
     ["business.html", "Business"],
-    ["training.html", "Training Academy"],
+    ["training.html", "AI Training Academy"],
     ["resources.html", "Resources"],
     ["tools.html", "Tools"],
     ["products.html", "Products"],
@@ -51,7 +51,7 @@ function footer(prefix) {
     <div class="container footer-grid">
       <div><a class="brand footer-brand" href="${prefix}index.html"><img class="brand-logo" src="${prefix}assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div>
       <div><strong>Products</strong><a href="${prefix}education-suite.html">Edu Suite 2.0</a><a href="${prefix}jems.html">JEMS English Mastery</a><a href="${prefix}business-suite.html">Business Suite</a><a href="${prefix}smart-procurement.html">Smart Procurement</a><a href="${prefix}cbt-portal.html">CBT Setup Enquiry</a></div>
-      <div><strong>Explore</strong><a href="${prefix}education.html">Education</a><a href="${prefix}business.html">Business</a><a href="${prefix}training.html">Training Academy</a><a href="${prefix}resources.html">Resources</a><a href="${prefix}tools.html">Tools</a><a href="${prefix}products.html">Products</a></div>
+      <div><strong>Explore</strong><a href="${prefix}education.html">Education</a><a href="${prefix}business.html">Business</a><a href="${prefix}training.html">AI Training Academy</a><a href="${prefix}resources.html">Resources</a><a href="${prefix}tools.html">Tools</a><a href="${prefix}products.html">Products</a></div>
       <div><strong>Company</strong><a href="${prefix}about.html">About</a><a href="${prefix}contact.html">Contact</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 815 400 8438</a><span>Port Harcourt, Nigeria</span></div>
     </div>
   </footer>`;
