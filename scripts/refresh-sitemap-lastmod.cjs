@@ -1,7 +1,7 @@
 const fs = require("fs");
 const cp = require("child_process");
 
-const today = "2026-08-05";
+const today = new Date().toISOString().slice(0, 10);
 const explicitPages = new Set(["resources.html"]);
 
 const changedPages = cp
