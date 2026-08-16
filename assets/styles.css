@@ -2072,6 +2072,13 @@ textarea { resize: vertical; }
   .community-article-body blockquote p { font-size: 18px; }
 }
 
+.ai-prompting-feature > img {
+  object-fit: contain;
+  object-position: center;
+  padding: 18px;
+  background: #0b1c34;
+}
+
 /* Smart Procurement and JEMS product surfaces */
 .procurement-product { background: #08384a; }
 .jems-product { background: #173f35; }

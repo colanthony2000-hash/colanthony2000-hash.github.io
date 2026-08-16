@@ -117,12 +117,18 @@
 .sql-guide-body summary { cursor: pointer; padding: 18px 20px; color: #0c1830; font-weight: 750; }
 .sql-guide-body details > div { padding: 0 20px 20px; }
 
+.lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 26px 0 38px; }
+.lab-grid .lab-card { margin: 0; border-top: 4px solid #1c6f75; }
+.lab-grid .lab-card summary { min-height: 86px; }
+.lab-grid .sql-code { font-size: 12px; }
+
 .sql-download-band { background: #eef3f8; }
 .sql-download-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .8fr); align-items: center; gap: 50px; }
 .sql-download-grid img { display: block; width: 100%; height: auto; border: 1px solid #cfd9e5; border-radius: 7px; }
 
 @media (max-width: 980px) {
   .sql-hero-grid, .sql-guide-layout, .sql-download-grid { grid-template-columns: 1fr; }
+  .lab-grid { grid-template-columns: 1fr; }
   .sql-hero-visual { max-width: 760px; }
   .sql-toc { position: static; order: -1; padding: 22px 24px; border: 1px solid #dce3eb; border-left: 5px solid #d6a62d; }
   .sql-toc a { padding: 8px 0; }
