@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn SQL for data analysis with PostgreSQL and DBeaver. Build the NovaMart database, write SELECT and WHERE queries, filter, sort, practise, and check worked answers.">
+  <title>SQL for Data Analysis: Complete Beginner's Guide | JENECONK</title>
+  <link rel="canonical" href="https://jeneconk.com/sql-for-data-analysis-beginners-guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css?v=20260815-4">
+  <link rel="stylesheet" href="assets/sql-guide.css?v=20260816">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <meta property="og:site_name" content="JENECONK Integrated Global Solutions Ltd">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SQL for Data Analysis: A Complete Beginner's Guide">
+  <meta property="og:description" content="A practical four-stage SQL course with PostgreSQL setup, NovaMart examples, exercises, answers, and a syntax cheat sheet.">
+  <meta property="og:url" content="https://jeneconk.com/sql-for-data-analysis-beginners-guide.html">
+  <meta property="og:image" content="https://jeneconk.com/assets/resources/sql-foundations-guide.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SQL for Data Analysis: A Complete Beginner's Guide">
+  <meta name="twitter:description" content="Learn database foundations, PostgreSQL, DBeaver, SELECT, filtering, sorting, and LIMIT through worked SQL examples.">
+  <meta name="twitter:image" content="https://jeneconk.com/assets/resources/sql-foundations-guide.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "SQL for Data Analysis: A Complete Beginner's Guide",
+        "description": "A practical four-stage SQL course with PostgreSQL setup, NovaMart examples, exercises, answers, and a syntax cheat sheet.",
+        "datePublished": "2026-08-16",
+        "dateModified": "2026-08-16",
+        "author": {"@type": "Organization", "name": "JENECONK Integrated Global Solutions Ltd", "url": "https://jeneconk.com/about.html"},
+        "publisher": {"@type": "Organization", "name": "JENECONK", "logo": {"@type": "ImageObject", "url": "https://jeneconk.com/assets/logo.png"}},
+        "image": "https://jeneconk.com/assets/resources/sql-foundations-guide.png",
+        "mainEntityOfPage": "https://jeneconk.com/sql-for-data-analysis-beginners-guide.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://jeneconk.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://jeneconk.com/resources.html"},
+          {"@type": "ListItem", "position": 3, "name": "SQL for Data Analysis", "item": "https://jeneconk.com/sql-for-data-analysis-beginners-guide.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "What is the difference between a spreadsheet and a database?", "acceptedAnswer": {"@type": "Answer", "text": "A spreadsheet is convenient for smaller flat tables and direct editing. A relational database manages larger connected tables with defined data types, keys, validation, and reliable querying."}},
+          {"@type": "Question", "name": "Why does WHERE column = NULL return no rows?", "acceptedAnswer": {"@type": "Answer", "text": "NULL represents the absence of a recorded value, so it is not compared with the equals operator. Use IS NULL or IS NOT NULL."}},
+          {"@type": "Question", "name": "Do I need PostgreSQL to learn SQL?", "acceptedAnswer": {"@type": "Answer", "text": "No. The core SQL concepts transfer to MySQL, SQL Server, and SQLite. This guide uses PostgreSQL so every learner can follow one consistent free environment."}},
+          {"@type": "Question", "name": "What should I learn after this SQL guide?", "acceptedAnswer": {"@type": "Answer", "text": "Continue with calculations, aggregate functions, GROUP BY, data-cleaning functions, joins, subqueries, and progressively larger analysis projects."}}
+        ]
+      }
+    ]
+  }
+  </script>
+  <meta name="google-adsense-account" content="ca-pub-1616319355564791">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616319355564791" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation"><span></span><span></span><span></span></button>
+    <nav class="nav" data-nav><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html" aria-current="page">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a><a href="about.html">Company</a></nav>
+  </header>
+
+  <main>
+    <section class="sql-hero section-pad">
+      <div class="container sql-hero-grid">
+        <div>
+          <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span><span>SQL Foundations</span></nav>
+          <p class="eyebrow">SQL Learning Series · Part 1</p>
+          <h1>SQL for Data Analysis: A Complete Beginner's Guide</h1>
+          <p class="hero-lede">Build database foundations, install PostgreSQL and DBeaver, create a working NovaMart database, and learn to retrieve, filter, sort, and limit data through real queries and practice assignments.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#start">Start the guide</a><a class="btn btn-secondary light" href="assets/resources/sql-foundations-stages-1-4.pptx" download>Download the 50-slide workbook</a></div>
+        </div>
+        <figure class="sql-hero-visual"><img src="assets/resources/sql-foundations-guide.png" alt="SQL for Data Analysis Foundations, stages 1 to 4" width="1280" height="720"><figcaption>Four practical stages, from database vocabulary to reliable sorted results.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section-pad" id="start">
+      <div class="container sql-guide-layout">
+        <article class="sql-guide-body">
+          <div class="sql-meta"><span>Published 16 August 2026</span><span>Beginner level</span><span>Estimated study time: 5 hours</span><span>Written by JENECONK</span></div>
+
+          <h2 id="how-to-use">How to use this SQL guide</h2>
+          <p>This guide is designed for a learner who has never queried a database. You do not need prior programming knowledge. Read Stage 1 before installing anything, complete the environment setup, and then type each query yourself. Reading SQL can make a command look familiar; running it, predicting the result, and correcting mistakes is what builds usable skill.</p>
+          <p>Every worked example uses the same NovaMart database so that concepts connect instead of appearing as isolated syntax. Five labels will help you navigate the learning process:</p>
+          <div class="sql-callout facilitator"><strong>Facilitator note</strong><p>A clear explanation an instructor can use to introduce a concept, or a solo learner can read before attempting the next example.</p></div>
+          <div class="sql-callout best"><strong>Best practice</strong><p>A professional habit worth applying every time, such as naming columns explicitly or reading an error from the beginning.</p></div>
+          <div class="sql-callout example"><strong>Example</strong><p>A complete query tied to a defined table, followed by an explanation of what the database returns.</p></div>
+          <div class="sql-callout practice"><strong>Try it yourself</strong><p>A short task to complete before continuing. Predict the result first whenever possible.</p></div>
+          <div class="sql-callout warning"><strong>Watch for</strong><p>A common mistake, why it happens, and the reliable way to correct it.</p></div>
+
+          <h2 id="stage-1">Stage 1: Database foundations</h2>
+          <div class="sql-stage-intro"><strong>Goal: understand the system before writing queries.</strong><span>Learn databases, relational structure, data types, NULL, keys, relationships, and the basic shape of SQL.</span></div>
+
+          <h3 id="database">What is a database?</h3>
+          <p>A database is an organized collection of data stored so it can be searched, filtered, validated, and connected efficiently. A spreadsheet is excellent for small tables, calculations, and direct visual editing. A database becomes more useful when data grows, many people or systems rely on it, or one business process spans several related tables.</p>
+          <div class="sql-table-wrap"><table class="sql-table"><thead><tr><th>Need</th><th>Spreadsheet</th><th>Relational database</th></tr></thead><tbody><tr><td>Small list edited manually</td><td>Very convenient</td><td>Possible, but usually unnecessary</td></tr><tr><td>Connected customers and orders</td><td>Often requires repeated data or lookups</td><td>Uses keys and relationships</td></tr><tr><td>Strict data validation</td><td>Can be configured, but easily bypassed</td><td>Built into the table structure</td></tr><tr><td>Repeatable analysis</td><td>Formulas, filters, and pivots</td><td>Saved and reusable SQL queries</td></tr><tr><td>Large shared operational data</td><td>Can become slow or fragile</td><td>Designed for controlled access and scale</td></tr></tbody></table></div>
+
+          <h3>Relational databases and DBMS software</h3>
+          <p>A relational database separates information into related tables. Instead of repeating a customer's name, state, email, and phone number on every order, one <code>customers</code> table stores the customer record and an <code>orders</code> table refers to that customer through an ID. The software that stores and manages these tables is called a database management system, or DBMS.</p>
+          <div class="sql-table-wrap"><table class="sql-table"><thead><tr><th>DBMS</th><th>Useful context</th></tr></thead><tbody><tr><td>PostgreSQL</td><td>Free, standards-oriented, feature-rich, and widely used for analysis and applications.</td></tr><tr><td>MySQL</td><td>Free and common in websites and web applications.</td></tr><tr><td>Microsoft SQL Server</td><td>Common in Microsoft-centered enterprise environments.</td></tr><tr><td>SQLite</td><td>Lightweight and file-based, useful for learning and embedded applications.</td></tr></tbody></table></div>
+          <p>This guide standardizes on PostgreSQL. Most core statements transfer directly to other systems, although commands such as limiting rows can vary.</p>
+
+          <h3>Tables, rows, columns, and data types</h3>
+          <p>A table is one organized set of related data. A row, also called a record, is one complete entry. A column, also called a field, is one defined attribute stored for every row. Columns have data types, such as integer, text, date, decimal, or boolean. Data types help the database reject invalid input and handle sorting or calculations correctly.</p>
+          <div class="sql-callout warning"><strong>Watch for: NULL is not zero</strong><p><code>NULL</code> means no value is recorded. It is different from numeric zero and different from an empty text string. A NULL order amount is unknown; an amount of 0 is known and confirmed to be zero.</p></div>
+
+          <h3>Primary keys, foreign keys, and relationships</h3>
+          <p>A primary key uniquely identifies each row in its own table and cannot be NULL. A foreign key points to a primary key in another table and creates a relationship. A unique key also prevents duplicate values, but it does not necessarily serve as the table's main row identifier.</p>
+          <ul><li><strong>One-to-one:</strong> one row in Table A matches one row in Table B.</li><li><strong>One-to-many:</strong> one customer can have many orders. This is the most common business relationship.</li><li><strong>Many-to-many:</strong> many students can take many courses, usually connected by an enrolment table.</li></ul>
+          <div class="sql-callout best"><strong>Best practice: protect referential integrity</strong><p>A foreign-key value should match a real primary key in the related table or be NULL when the relationship is optional. This prevents an order from pointing to a customer who does not exist.</p></div>
+
+          <h3>What SQL is and how a query is structured</h3>
+          <p>SQL stands for Structured Query Language. It is the language used to retrieve, filter, summarize, combine, and change relational data. Keywords have a defined order. Not every query uses every clause, but clauses that are present must appear in the right sequence.</p>
+          <pre class="sql-code"><code>SELECT column_name       -- what to retrieve
+FROM table_name          -- which table
+WHERE condition          -- which rows, optional
+ORDER BY column_name;    -- how to sort, optional</code></pre>
+          <p>SQL keywords are conventionally written in uppercase and table or column names in lowercase. PostgreSQL does not require that style, but consistency makes long queries easier to scan. Two dashes begin a line comment, and a semicolon marks the end of a statement.</p>
+
+          <h2 id="setup">Set up PostgreSQL and DBeaver</h2>
+          <p>PostgreSQL is the database server that stores the data. DBeaver Community is the visible application used to connect to that server, browse tables, write queries, and inspect results. Install PostgreSQL first because DBeaver needs a database server to connect to.</p>
+
+          <h3>Install PostgreSQL</h3>
+          <ol><li>Visit <a href="https://www.postgresql.org/download/" target="_blank" rel="noreferrer">postgresql.org/download</a> and choose your operating system.</li><li>Run the standard installer and keep the core components selected.</li><li>Create a strong password for the <code>postgres</code> superuser and store it securely.</li><li>Keep the default port <code>5432</code> unless another local service already uses it.</li><li>Complete the installation. Stack Builder is optional and is not required for this guide.</li></ol>
+          <div class="sql-callout warning"><strong>Watch for: protect the superuser password</strong><p>This is a local database administrator credential, not an ordinary website password. You will need it when connecting DBeaver. Do not publish, share, or reuse it on unrelated services.</p></div>
+
+          <h3>Install and connect DBeaver</h3>
+          <ol><li>Download <a href="https://dbeaver.io/download/" target="_blank" rel="noreferrer">DBeaver Community</a> for Windows, macOS, or Linux.</li><li>Open DBeaver and create a new database connection.</li><li>Select PostgreSQL. Use host <code>localhost</code>, port <code>5432</code>, username <code>postgres</code>, and your PostgreSQL password.</li><li>Choose <strong>Test Connection</strong>. Allow DBeaver to download the PostgreSQL driver if requested.</li><li>Finish the connection when the test reports success.</li></ol>
+          <p>The Database Navigator displays connections, databases, schemas, and tables. The SQL Editor is where you write statements. A table's Data tab lets you inspect rows. In the editor, <code>Ctrl+Enter</code> on Windows or <code>Cmd+Return</code> on macOS runs the current statement.</p>
+
+          <figure class="sql-figure"><img src="assets/resources/sql-troubleshooting-guide.png" alt="SQL beginner troubleshooting table for PostgreSQL and DBeaver errors" width="1280" height="720" loading="lazy"><figcaption>Common setup and query errors become easier to solve when you read the message from the beginning.</figcaption></figure>
+          <div class="sql-table-wrap"><table class="sql-table"><thead><tr><th>Message or symptom</th><th>Likely cause</th><th>What to check</th></tr></thead><tbody><tr><td>Connection refused</td><td>PostgreSQL is not running</td><td>Start or restart the PostgreSQL service, then reconnect.</td></tr><tr><td>Password authentication failed</td><td>Incorrect password</td><td>Re-enter the exact password; it is case-sensitive.</td></tr><tr><td>relation does not exist</td><td>Wrong database, schema, or table spelling</td><td>Confirm the editor is connected to <code>novamart</code> and inspect the Navigator.</td></tr><tr><td>column does not exist</td><td>Column name is misspelled</td><td>Expand the table and copy the actual column name.</td></tr><tr><td>syntax error at or near</td><td>Missing comma, quote, parenthesis, or keyword</td><td>Inspect the characters immediately before the word identified.</td></tr></tbody></table></div>
+
+          <h3 id="novamart">Build the NovaMart practice database</h3>
+          <p>Create a database named <code>novamart</code>, open a fresh editor connected specifically to it, and then create two related tables. PostgreSQL does not use MySQL's <code>USE database</code> command; the editor's active connection determines where the statement runs.</p>
+          <figure class="sql-figure"><img src="assets/resources/sql-novamart-schema.png" alt="NovaMart sample database with related customers and orders tables" width="1280" height="720" loading="lazy"><figcaption>NovaMart keeps customer details separate from orders and connects the tables through customerid.</figcaption></figure>
+          <pre class="sql-code"><code>CREATE DATABASE novamart;</code></pre>
+          <p>After creating the database, refresh the Navigator, right-click <code>novamart</code>, and open a new SQL Editor. Then create and populate the tables:</p>
+          <pre class="sql-code"><code>CREATE TABLE customers (
+  customerid INTEGER PRIMARY KEY,
+  customername TEXT,
+  state TEXT,
+  gender TEXT,
+  email TEXT
+);
+
+CREATE TABLE orders (
+  orderid INTEGER PRIMARY KEY,
+  customerid INTEGER REFERENCES customers(customerid),
+  orderdate DATE,
+  product TEXT,
+  amount NUMERIC(10,2),
+  salesperson TEXT
+);</code></pre>
+          <pre class="sql-code"><code>INSERT INTO customers VALUES
+  (1, 'Adaeze Obi', 'Rivers', 'Female', 'adaeze.obi@mail.com'),
+  (2, 'Tunde Bakare', 'Lagos', 'Male', 'tunde.bakare@mail.com'),
+  (3, 'Chinyere Eze', 'Abuja', 'Female', 'chinyere.eze@mail.com'),
+  (4, 'Ibrahim Musa', 'Kano', 'Male', 'ibrahim.musa@mail.com'),
+  (5, 'Ngozi Umeh', 'Rivers', 'Female', 'ngozi.umeh@mail.com');
+
+INSERT INTO orders VALUES
+  (101, 1, '2025-01-12', 'Laptop', 450000.00, 'Amaka'),
+  (102, 2, '2025-01-18', 'Monitor', 125000.00, 'Bello'),
+  (103, 1, '2025-02-03', 'Keyboard', 35000.00, 'Amaka'),
+  (104, 3, '2025-02-16', 'Printer', 185000.00, 'Chidi'),
+  (105, 5, '2025-03-08', 'Router', 68000.00, 'Bello');</code></pre>
+          <p>Expand <code>novamart → Schemas → public → Tables</code> and inspect each table's Data tab. If both tables display their rows, the practice environment is ready.</p>
+
+          <div class="sql-callout practice"><strong>Stage 1 assignment: library schema</strong><p>Create a <code>library</code> database with <code>authors</code> and <code>books</code> tables. Choose suitable data types, primary keys, and a foreign key from books to authors. Explain whether the relationship is one-to-one, one-to-many, or many-to-many.</p></div>
+
+          <h2 id="stage-2">Stage 2: Retrieve and filter data</h2>
+          <div class="sql-stage-intro"><strong>Goal: write your first useful queries.</strong><span>Select columns, rename output, remove duplicates, filter rows, compare values, and combine conditions.</span></div>
+
+          <h3>SELECT specific columns</h3>
+          <p><code>SELECT</code> names the columns the database should return. An asterisk asks for every column, while an explicit list returns only what the analysis needs.</p>
+          <pre class="sql-code"><code>SELECT *
+FROM customers;
+
+SELECT customername, state
+FROM customers;</code></pre>
+          <div class="sql-callout best"><strong>Best practice: avoid SELECT * in reusable work</strong><p>An explicit column list documents the intended output, transfers less unnecessary data, and prevents a report from changing unexpectedly when a table gains another column.</p></div>
+
+          <h3>Rename output with aliases</h3>
+          <p>An alias changes a result heading without renaming the stored column. Use quotes when an output label contains spaces.</p>
+          <pre class="sql-code"><code>SELECT customername AS "Customer Name",
+       state AS "Location"
+FROM customers;</code></pre>
+
+          <h3>Remove duplicate results with DISTINCT</h3>
+          <pre class="sql-code"><code>SELECT DISTINCT state
+FROM customers;</code></pre>
+          <p>NovaMart has five customer rows but only four distinct states. With several selected columns, <code>DISTINCT</code> evaluates the complete combination. Two rows collapse only when every selected value matches.</p>
+
+          <h3>Filter rows with WHERE</h3>
+          <pre class="sql-code"><code>SELECT orderid, product, amount
+FROM orders
+WHERE amount &gt; 100000;</code></pre>
+          <div class="sql-table-wrap"><table class="sql-table"><thead><tr><th>orderid</th><th>product</th><th>amount</th></tr></thead><tbody><tr><td>101</td><td>Laptop</td><td>450000.00</td></tr><tr><td>102</td><td>Monitor</td><td>125000.00</td></tr><tr><td>104</td><td>Printer</td><td>185000.00</td></tr></tbody></table></div>
+          <p>Text and date literals need single quotes. Numeric values do not. Comparison operators include <code>=</code>, <code>&lt;&gt;</code> or <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code>.</p>
+
+          <h3>Combine conditions with AND, OR, and NOT</h3>
+          <pre class="sql-code"><code>SELECT *
+FROM orders
+WHERE salesperson = 'Bello'
+  AND amount &gt; 50000;</code></pre>
+          <p><code>AND</code> requires every condition to be true. <code>OR</code> accepts a row when at least one condition is true. <code>NOT</code> reverses a condition. Use parentheses when combining AND and OR so the intended logic is unambiguous.</p>
+          <div class="sql-callout practice"><strong>Stage 2 assignment: query the library</strong><p>Add publication years and five book records. Return every column; return only title and genre with a readable title alias; and return the list of distinct genres. Predict whether adding <code>authorid</code> to the DISTINCT query will increase the number of rows.</p></div>
+
+          <h2 id="stage-3">Stage 3: Filter data properly</h2>
+          <div class="sql-stage-intro"><strong>Goal: express real business conditions.</strong><span>Match lists, ranges, text patterns, missing values, and carefully grouped multi-condition filters.</span></div>
+
+          <h3>Match a list with IN</h3>
+          <pre class="sql-code"><code>SELECT customername, state
+FROM customers
+WHERE state IN ('Rivers', 'Lagos', 'Abuja');</code></pre>
+          <p><code>IN</code> is clearer than repeating the same column through several OR conditions. Text values need quotes; numeric values do not.</p>
+
+          <h3>Match an inclusive range with BETWEEN</h3>
+          <pre class="sql-code"><code>SELECT orderid, product, amount
+FROM orders
+WHERE amount BETWEEN 50000 AND 150000;</code></pre>
+          <p><code>BETWEEN</code> includes both boundaries. The same operator works with suitable date columns:</p>
+          <pre class="sql-code"><code>SELECT *
+FROM orders
+WHERE orderdate BETWEEN '2025-01-01' AND '2025-03-31';</code></pre>
+
+          <h3>Search text patterns with LIKE</h3>
+          <div class="sql-table-wrap"><table class="sql-table"><thead><tr><th>Pattern</th><th>Meaning</th></tr></thead><tbody><tr><td><code>'A%'</code></td><td>Starts with A</td></tr><tr><td><code>'%son'</code></td><td>Ends with son</td></tr><tr><td><code>'%market%'</code></td><td>Contains market</td></tr><tr><td><code>'A_a'</code></td><td>A, one character, then a</td></tr></tbody></table></div>
+          <pre class="sql-code"><code>SELECT customername
+FROM customers
+WHERE customername LIKE 'A%';</code></pre>
+          <div class="sql-callout warning"><strong>Watch for: case sensitivity varies</strong><p>PostgreSQL's <code>LIKE</code> is case-sensitive. Use <code>ILIKE</code> when you intentionally need PostgreSQL's case-insensitive matching. Other database systems handle case sensitivity differently.</p></div>
+
+          <h3>Test missing values correctly</h3>
+          <pre class="sql-code"><code>SELECT *
+FROM customers
+WHERE email IS NULL;
+
+SELECT *
+FROM customers
+WHERE email IS NOT NULL;</code></pre>
+          <div class="sql-callout warning"><strong>Watch for: never use = NULL</strong><p><code>WHERE email = NULL</code> does not identify missing values. It evaluates to unknown and returns no matching rows. Also check whether the source system stores a true NULL or an empty string, because <code>IS NULL</code> does not match <code>''</code>.</p></div>
+
+          <h3>Combine several filters safely</h3>
+          <pre class="sql-code"><code>SELECT *
+FROM orders
+WHERE salesperson IN ('Amaka', 'Bello')
+  AND amount &gt; 50000
+  AND orderdate BETWEEN '2025-01-01' AND '2025-03-31';</code></pre>
+          <p>Parentheses matter when OR is added. In the following query, the state alternatives are evaluated together before the amount condition:</p>
+          <pre class="sql-code"><code>SELECT *
+FROM customers
+WHERE (state = 'Rivers' OR state = 'Lagos')
+  AND customerid &gt; 1;</code></pre>
+          <div class="sql-callout practice"><strong>Stage 3 assignment: hotel bookings</strong><p>Write queries for Deluxe or Suite rooms using IN; total cost between 50000 and 200000; guest names beginning with K; and bookings with no special request. Inspect the column first to determine whether missing requests are NULL or empty text.</p></div>
+
+          <h2 id="stage-4">Stage 4: Sort and limit results</h2>
+          <div class="sql-stage-intro"><strong>Goal: answer ranked and priority questions.</strong><span>Control result order and return a deliberate top or bottom group.</span></div>
+
+          <h3>Sort results with ORDER BY</h3>
+          <pre class="sql-code"><code>SELECT product, amount
+FROM orders
+ORDER BY amount DESC;</code></pre>
+          <p>Ascending order is the default. Add <code>DESC</code> for descending order. Multiple sort columns provide a predictable tiebreaker:</p>
+          <pre class="sql-code"><code>SELECT salesperson, product, amount
+FROM orders
+ORDER BY salesperson ASC, amount DESC;</code></pre>
+
+          <h3>Limit the number of rows</h3>
+          <pre class="sql-code"><code>SELECT product, amount
+FROM orders
+ORDER BY amount DESC
+LIMIT 3;</code></pre>
+          <p>PostgreSQL, MySQL, and SQLite use <code>LIMIT</code>. SQL Server commonly uses <code>TOP</code> after SELECT. Pair the row cap with ORDER BY whenever the question asks for the highest, lowest, newest, oldest, best, or worst records.</p>
+          <div class="sql-callout best"><strong>Best practice: LIMIT needs ORDER BY</strong><p>Without an explicit sort, a database does not promise which rows will appear first. <code>LIMIT 10</code> alone means ten available rows, not the top ten.</p></div>
+          <div class="sql-callout practice"><strong>Stage 4 assignment: leaderboard</strong><p>Return the top three scores; resolve tied scores by sorting player name ascending as a second column; and return the single lowest score using ORDER BY and LIMIT rather than an aggregate function.</p></div>
+
+          <h2 id="answers">Worked assignment answers</h2>
+          <p>Attempt each task before opening its solution. The struggle to recall and assemble a query is part of learning; recognizing an answer after it is revealed is not the same as producing it independently.</p>
+          <details><summary>Stage 1 answer: library keys and relationship</summary><div><p><code>bookid</code> is the primary key of books and <code>authorid</code> is the primary key of authors. The <code>authorid</code> column in books is a foreign key referencing authors. This simple design is one-to-many: one author may have many books, while each book row points to one author.</p></div></details>
+          <details><summary>Stage 2 answer: library queries</summary><div><pre class="sql-code"><code>SELECT * FROM books;
+
+SELECT title AS "Book Name", genre
+FROM books;
+
+SELECT DISTINCT genre
+FROM books;</code></pre><p><code>SELECT DISTINCT genre, authorid</code> can return more rows because uniqueness is evaluated across each genre-author combination.</p></div></details>
+          <details><summary>Stage 3 answer: hotel filters</summary><div><pre class="sql-code"><code>SELECT * FROM bookings
+WHERE roomtype IN ('Deluxe', 'Suite');
+
+SELECT * FROM bookings
+WHERE totalcost BETWEEN 50000 AND 200000;
+
+SELECT * FROM bookings
+WHERE guestname LIKE 'K%';
+
+SELECT * FROM bookings
+WHERE specialrequest IS NULL;
+-- Use specialrequest = '' only when the source stores empty text.</code></pre></div></details>
+          <details><summary>Stage 4 answer: leaderboard sorting</summary><div><pre class="sql-code"><code>SELECT * FROM leaderboard
+ORDER BY score DESC
+LIMIT 3;
+
+SELECT * FROM leaderboard
+ORDER BY score DESC, playername ASC;
+
+SELECT * FROM leaderboard
+ORDER BY score ASC
+LIMIT 1;</code></pre><p>The player-name tiebreaker makes the order predictable when two scores are equal.</p></div></details>
+
+          <h2 id="cheat-sheet">SQL syntax cheat sheet</h2>
+          <div class="sql-table-wrap"><table class="sql-table"><thead><tr><th>Task</th><th>Syntax</th></tr></thead><tbody><tr><td>Select columns</td><td><code>SELECT col1, col2 FROM table;</code></td></tr><tr><td>Rename output</td><td><code>SELECT col AS alias FROM table;</code></td></tr><tr><td>Remove duplicates</td><td><code>SELECT DISTINCT col FROM table;</code></td></tr><tr><td>Filter rows</td><td><code>SELECT * FROM table WHERE condition;</code></td></tr><tr><td>Match a list</td><td><code>WHERE col IN (value1, value2)</code></td></tr><tr><td>Match a range</td><td><code>WHERE col BETWEEN low AND high</code></td></tr><tr><td>Match text</td><td><code>WHERE col LIKE 'A%'</code></td></tr><tr><td>Find missing values</td><td><code>WHERE col IS NULL</code></td></tr><tr><td>Sort results</td><td><code>ORDER BY col DESC</code></td></tr><tr><td>Cap rows</td><td><code>LIMIT 10</code></td></tr><tr><td>Add a comment</td><td><code>-- comment text</code></td></tr></tbody></table></div>
+          <figure class="sql-figure"><img src="assets/resources/sql-syntax-cheat-sheet.png" alt="Printable SQL syntax cheat sheet covering SELECT, DISTINCT, WHERE, IN, BETWEEN, LIKE, NULL, ORDER BY, and LIMIT" width="1280" height="720" loading="lazy"><figcaption>Keep the full quick-reference slide nearby while completing the assignments.</figcaption></figure>
+
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq-list">
+            <details><summary>What is the difference between a spreadsheet and a database?</summary><p>A spreadsheet is convenient for smaller flat tables, direct editing, formulas, and presentation. A relational database is designed for connected tables, controlled data types, validation, repeatable queries, and larger shared data. Analysts commonly use both.</p></details>
+            <details><summary>Why does WHERE column = NULL return nothing?</summary><p>NULL is the absence of a recorded value, not an ordinary value. Comparisons with NULL evaluate as unknown. Use <code>IS NULL</code> or <code>IS NOT NULL</code>.</p></details>
+            <details><summary>Do I need PostgreSQL to learn SQL?</summary><p>No. The core concepts transfer to MySQL, SQL Server, SQLite, and other relational systems. PostgreSQL provides a capable free environment and gives every example in this guide one consistent syntax.</p></details>
+            <details><summary>Is SQL case-sensitive?</summary><p>SQL keywords are generally not case-sensitive, but text comparisons and object-name behavior vary by database. PostgreSQL folds unquoted identifiers to lowercase, and its LIKE operator is case-sensitive.</p></details>
+            <details><summary>What should I learn next?</summary><p>Continue with calculations, aggregate functions such as COUNT and SUM, GROUP BY, HAVING, data-cleaning functions, joins, subqueries, and complete analysis projects.</p></details>
+          </div>
+
+          <h2 id="next">Continue your data-analysis pathway</h2>
+          <p>This guide covers the first four stages of the JENECONK SQL learning series. Continue building your wider analyst toolkit through <a href="data-cleaning-in-excel.html">data cleaning in Excel</a>, <a href="power-bi-for-business-reporting.html">Power BI for business reporting</a>, and the <a href="career-roadmap-data-analyst-nigeria.html">data analyst career roadmap</a>. For guided practice, projects, and facilitator support, explore the <a href="training.html">JENECONK AI Training Academy</a>.</p>
+          <p>JENECONK's training team developed this resource as a practical foundation for learners who need to move from spreadsheet familiarity into structured data work. Examples are written for hands-on use, and the guide will be expanded as later stages in the SQL series are published.</p>
+        </article>
+
+        <aside class="sql-toc" aria-label="SQL guide contents">
+          <strong>On this page</strong>
+          <a href="#how-to-use">How to use the guide</a>
+          <a href="#stage-1">Stage 1: Foundations</a>
+          <a href="#setup">PostgreSQL and DBeaver</a>
+          <a href="#novamart">Build NovaMart</a>
+          <a href="#stage-2">Stage 2: Retrieval</a>
+          <a href="#stage-3">Stage 3: Filtering</a>
+          <a href="#stage-4">Stage 4: Sorting</a>
+          <a href="#answers">Worked answers</a>
+          <a href="#cheat-sheet">Syntax cheat sheet</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-primary" href="assets/resources/sql-foundations-stages-1-4.pptx" download>Download workbook</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-pad sql-download-band">
+      <div class="container sql-download-grid">
+        <div><p class="eyebrow">Study offline</p><h2>Download the complete 50-slide SQL workbook.</h2><p>The downloadable presentation contains the four-stage learning sequence, facilitator guidance, worked query/result pairs, assignments, answer keys, and the full reference sheet. The article above remains the complete web learning experience; the workbook is an optional study companion.</p><div class="hero-actions"><a class="btn btn-primary" href="assets/resources/sql-foundations-stages-1-4.pptx" download>Download PowerPoint workbook</a><a class="btn btn-secondary" href="training.html">Explore guided training</a></div></div>
+        <img src="assets/resources/sql-series-next-steps.png" alt="SQL stages 1 to 4 completion and next learning stages" width="1280" height="720" loading="lazy">
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div>
+      <div><strong>Products</strong><a href="education-suite.html">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="business-suite.html">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div>
+      <div><strong>Explore</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a></div>
+      <div><strong>Company</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 815 400 8438</a><span>Port Harcourt, Nigeria</span></div>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
