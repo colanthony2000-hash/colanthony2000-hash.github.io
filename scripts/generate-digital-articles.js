@@ -3,9 +3,9 @@ const path = require("path");
 
 const today = "2026-08-04";
 
-const ads = `<meta name="google-adsense-account" content="ca-pub-1616319355564791">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616319355564791"
-     crossorigin="anonymous"></script>`;
+// These early resource drafts stay out of indexing and ad delivery until each
+// topic receives a substantive, individually reviewed rewrite.
+const ads = `<meta name="robots" content="noindex, follow">`;
 
 const articles = [
   {
@@ -420,7 +420,7 @@ ${schema.split("\n").map((line) => `  ${line}`).join("\n")}
       <div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>AI-powered education, business, training, tools, and digital transformation systems.</p></div>
       <div><strong>Products</strong><a href="https://edu.jeneconk.com" target="_blank" rel="noreferrer">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="https://business.jeneconk.com" target="_blank" rel="noreferrer">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div>
       <div><strong>Ecosystem</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">Training</a><a href="tools.html">Tools</a><a href="resources.html" aria-current="page">Resources</a></div>
-      <div><strong>Company</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 8154008438</a><span>Port Harcourt, Nigeria</span></div>
+      <div><strong>Company &amp; Policies</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a><a href="cookie-policy.html">Cookie Policy</a><a href="editorial-policy.html">Editorial Policy</a><a href="content-transparency.html">Content Transparency</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><span>Port Harcourt, Nigeria</span></div>
     </div>
   </footer>
   <script src="assets/main.js"></script>
