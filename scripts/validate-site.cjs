@@ -5,6 +5,27 @@ const root = process.cwd();
 const skipDirs = new Set([".git", "archive", "oldassets"]);
 const skipHtmlFiles = new Set(["404.html"]);
 const policyFiles = ["privacy-policy.html", "terms-of-use.html", "cookie-policy.html", "editorial-policy.html", "content-transparency.html"];
+const strengthenedAudiencePages = [
+  "edu-suite-for-primary-schools.html",
+  "edu-suite-for-secondary-schools.html",
+  "edu-suite-for-private-schools.html",
+  "edu-suite-for-government-schools.html",
+  "edu-suite-for-montessori-schools.html",
+  "edu-suite-for-cambridge-schools.html",
+  "solutions-for-churches.html",
+  "solutions-for-ngos.html",
+  "solutions-for-hotels.html",
+  "solutions-for-smes.html",
+  "solutions-for-government.html",
+];
+const consolidatedLocationPages = [
+  "school-management-software-lagos.html",
+  "school-management-software-abuja.html",
+  "school-management-software-port-harcourt.html",
+  "school-management-software-kano.html",
+  "school-management-software-enugu.html",
+  "school-management-software-yobe-state-damaturu.html",
+];
 const bannedPatterns = [
   /Ã/,
   /Â/,
@@ -52,6 +73,15 @@ function localTarget(fromFile, rawUrl) {
     : path.resolve(path.dirname(fromFile), clean);
 
   return clean.endsWith("/") ? path.join(normalized, "index.html") : normalized;
+}
+
+function visibleWordCount(source) {
+  const plain = source
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z0-9#]+;/gi, " ");
+  return (plain.match(/\b[\p{L}\p{N}'-]+\b/gu) || []).length;
 }
 
 const allFiles = walk(root);
@@ -116,6 +146,23 @@ for (const url of urls) {
   if (fs.existsSync(full) && /name="robots" content="noindex/i.test(fs.readFileSync(full, "utf8"))) {
     errors.push(`sitemap: noindex page included ${url}`);
   }
+}
+
+for (const page of strengthenedAudiencePages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  const words = visibleWordCount(source);
+  if (words < 600) errors.push(`${page}: strengthened audience page is too thin (${words} words)`);
+  if (!source.includes('"@type":"FAQPage"')) errors.push(`${page}: missing FAQPage structured data`);
+}
+
+const locationHub = fs.readFileSync(path.join(root, "school-software-support-nigeria.html"), "utf8");
+if (visibleWordCount(locationHub) < 900) errors.push("school-software-support-nigeria.html: consolidated location guide is too thin");
+for (const page of consolidatedLocationPages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  const url = `https://jeneconk.com/${page}`;
+  if (!/name="robots" content="noindex, follow"/i.test(source)) errors.push(`${page}: consolidated location page must be noindex`);
+  if (!source.includes('rel="canonical" href="https://jeneconk.com/school-software-support-nigeria.html"')) errors.push(`${page}: missing location-hub canonical`);
+  if (urls.includes(url)) errors.push(`sitemap: consolidated location URL still included ${url}`);
 }
 
 const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
