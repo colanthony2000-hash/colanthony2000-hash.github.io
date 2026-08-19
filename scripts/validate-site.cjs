@@ -26,6 +26,10 @@ const consolidatedLocationPages = [
   "school-management-software-enugu.html",
   "school-management-software-yobe-state-damaturu.html",
 ];
+const substantialResourcePages = [
+  ["sql-for-data-analysis-beginners-guide.html", 1800],
+  ["wireshark-for-beginners-packet-analysis-guide.html", 1800],
+];
 const bannedPatterns = [
   /Ã/,
   /Â/,
@@ -153,6 +157,14 @@ for (const page of strengthenedAudiencePages) {
   const words = visibleWordCount(source);
   if (words < 600) errors.push(`${page}: strengthened audience page is too thin (${words} words)`);
   if (!source.includes('"@type":"FAQPage"')) errors.push(`${page}: missing FAQPage structured data`);
+}
+
+for (const [page, minimumWords] of substantialResourcePages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  const words = visibleWordCount(source);
+  if (words < minimumWords) errors.push(`${page}: substantial resource is too thin (${words} words)`);
+  if (!source.includes('"@type": "Article"')) errors.push(`${page}: missing Article structured data`);
+  if (!source.includes('"@type": "FAQPage"')) errors.push(`${page}: missing FAQPage structured data`);
 }
 
 const locationHub = fs.readFileSync(path.join(root, "school-software-support-nigeria.html"), "utf8");

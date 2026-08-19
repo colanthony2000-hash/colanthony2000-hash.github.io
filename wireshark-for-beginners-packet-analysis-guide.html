@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Wireshark from the launch screen to first packet analysis. Find packet counts, use display filters, read TCP and DNS traffic, complete six labs, and download the JENECONK workbook.">
+  <title>Wireshark for Beginners: Packet Analysis Guide | JENECONK</title>
+  <link rel="canonical" href="https://jeneconk.com/wireshark-for-beginners-packet-analysis-guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css?v=20260819">
+  <link rel="stylesheet" href="assets/wireshark-guide.css?v=20260819">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <meta property="og:site_name" content="JENECONK Integrated Global Solutions Ltd">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Wireshark for Beginners: From Workspace to First Packet Analysis">
+  <meta property="og:description" content="A practical Wireshark course with workspace guidance, filters, protocol interpretation, six labs, a report template, and a downloadable 78-slide workbook.">
+  <meta property="og:url" content="https://jeneconk.com/wireshark-for-beginners-packet-analysis-guide.html">
+  <meta property="og:image" content="https://jeneconk.com/assets/resources/wireshark-launch-screen.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wireshark for Beginners: Packet Analysis Guide">
+  <meta name="twitter:description" content="Learn the Wireshark workspace, packet counts, display filters, protocols, statistics, and a reliable first-analysis workflow.">
+  <meta name="twitter:image" content="https://jeneconk.com/assets/resources/wireshark-launch-screen.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Wireshark for Beginners: From Workspace to First Packet Analysis",
+        "description": "A practical beginner course covering the Wireshark workspace, capture properties, packet interpretation, display filters, statistics, six labs, and an analysis report template.",
+        "datePublished": "2026-08-19",
+        "dateModified": "2026-08-19",
+        "author": {"@type": "Organization", "name": "JENECONK Integrated Global Solutions Ltd", "url": "https://jeneconk.com/about.html"},
+        "publisher": {"@type": "Organization", "name": "JENECONK", "logo": {"@type": "ImageObject", "url": "https://jeneconk.com/assets/logo.png"}},
+        "image": "https://jeneconk.com/assets/resources/wireshark-launch-screen.png",
+        "mainEntityOfPage": "https://jeneconk.com/wireshark-for-beginners-packet-analysis-guide.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://jeneconk.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://jeneconk.com/resources.html"},
+          {"@type": "ListItem", "position": 3, "name": "Wireshark for Beginners", "item": "https://jeneconk.com/wireshark-for-beginners-packet-analysis-guide.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "Where can I find the total packet count and capture duration in Wireshark?", "acceptedAnswer": {"@type": "Answer", "text": "Use Statistics, then Capture File Properties for the full packet count, captured and displayed counts, duration, file size, and capture details. The status bar also provides a quick packet summary."}},
+          {"@type": "Question", "name": "What is the difference between a capture filter and a display filter?", "acceptedAnswer": {"@type": "Answer", "text": "A capture filter limits what is recorded during a live capture. A display filter changes which already-captured packets are visible without deleting packets from the file."}},
+          {"@type": "Question", "name": "Does a Wireshark warning prove that a network is faulty or under attack?", "acceptedAnswer": {"@type": "Answer", "text": "No. Expert Information and warning colours identify items worth investigating. They must be checked against timing, context, endpoints, protocol behavior, and other evidence."}},
+          {"@type": "Question", "name": "Can a beginner learn Wireshark without capturing live traffic?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Opening an authorised saved capture is a controlled way to learn the interface, packet panes, filters, statistics, and reporting before attempting a live capture."}}
+        ]
+      }
+    ]
+  }
+  </script>
+  <meta name="google-adsense-account" content="ca-pub-1616319355564791">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616319355564791" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation"><span></span><span></span><span></span></button>
+    <nav class="nav" data-nav><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a><a href="about.html">Company</a></nav>
+  </header>
+
+  <main>
+    <section class="wire-hero section-pad">
+      <div class="container wire-hero-grid">
+        <div>
+          <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span><span>Wireshark</span></nav>
+          <p class="eyebrow">Cybersecurity and network analysis</p>
+          <h1>Wireshark for Beginners: From Workspace to First Packet Analysis</h1>
+          <p class="hero-lede">Learn where to look, what each pane means, how to narrow a capture with reliable display filters, and how to turn packet evidence into a careful written conclusion.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#quick-answer">Start the guide</a><a class="btn btn-secondary light" href="assets/resources/jeneconk-wireshark-beginner-packet-analysis-guide.pptx" download>Download 78-slide workbook</a></div>
+        </div>
+        <figure class="wire-hero-visual"><img src="assets/resources/wireshark-launch-screen.png" alt="Wireshark launch screen showing the menu, display filter, open file area, capture interfaces, and status bar" width="1175" height="868"><figcaption>A clean launch screen from the JENECONK training workbook.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section-pad" id="quick-answer">
+      <div class="container wire-guide-layout">
+        <article class="wire-guide-body">
+          <div class="wire-meta"><span>Published 19 August 2026</span><span>Beginner level</span><span>Six practical labs</span><span>Written by JENECONK</span></div>
+
+          <div class="wire-answer">
+            <p class="eyebrow">Quick answer</p>
+            <h2>Where do I find total packets and capture duration?</h2>
+            <p>Open <strong>Statistics → Capture File Properties</strong>. That window reports the capture file, elapsed duration, file size, total captured packets, displayed packets, marked packets, dropped packets when available, and other capture details. For a quick glance, the status bar at the bottom of the main window also shows packet totals and the number currently displayed.</p>
+            <p>If a display filter is active, <strong>displayed packets</strong> may be lower than <strong>captured packets</strong>. The packets have not been deleted. The filter only changes what you can see.</p>
+          </div>
+
+          <div class="wire-safety"><strong>Use Wireshark only on traffic you are authorised to inspect.</strong><p>Capture files can contain addresses, hostnames, session details, and application data. Use your own lab, an approved training file, or a network for which you have written permission. Store captures securely, share only what is necessary, and remove sensitive material before publishing screenshots or reports.</p></div>
+
+          <h2 id="workspace">1. Learn the workspace before reading packets</h2>
+          <p>Wireshark becomes much easier when you separate the launch screen from the analysis workspace. On launch, the interface helps you open a saved capture or choose a network interface for live capture. After a file is opened or traffic is recorded, the center of the application changes into a three-pane analysis workspace.</p>
+          <div class="wire-parts">
+            <div><strong>Menu bar</strong><span>Opens capture, analysis, statistics, telephony, wireless, tools, and help commands.</span></div>
+            <div><strong>Main toolbar</strong><span>Provides quick access to common actions such as opening, saving, starting, stopping, and navigating.</span></div>
+            <div><strong>Display filter bar</strong><span>Narrows the packets already present in the current capture.</span></div>
+            <div><strong>Open area</strong><span>Loads an authorised <code>.pcap</code> or <code>.pcapng</code> file for analysis.</span></div>
+            <div><strong>Capture interfaces</strong><span>Lists available network adapters and their current activity.</span></div>
+            <div><strong>Status bar</strong><span>Shows the active profile, packet totals, displayed rows, and other session information.</span></div>
+          </div>
+          <p>The activity graph helps identify which interface is carrying traffic. An interface name alone is not enough: confirm that the adapter belongs to the approved capture scope before starting.</p>
+
+          <h3>Opening a file and capturing live traffic are different</h3>
+          <p>Opening a saved capture lets you analyse packets that already exist. It is the best starting point for a beginner because every learner can inspect the same evidence and repeat the same steps. Starting a live capture records new traffic from a selected interface until you stop it. A capture filter can restrict what is recorded, but a mistake at this stage may omit evidence that cannot be recovered from that session.</p>
+          <div class="wire-callout practice"><strong>Beginner recommendation</strong><p>Start with an approved saved capture. Learn the panes, filters, statistics, and reporting process first. Move to live capture only after you understand interface selection, permission, storage, and scope.</p></div>
+
+          <h2 id="panes">2. Understand the three packet panes</h2>
+          <p>When a capture is open, Wireshark presents the same packet at three levels. Selecting a row in the upper pane controls the information shown below it.</p>
+          <ol>
+            <li><strong>Packet List:</strong> one summary row per packet, usually showing number, time, source, destination, protocol, length, and a plain-language Info field.</li>
+            <li><strong>Packet Details:</strong> an expandable protocol tree. A typical web packet may contain frame, Ethernet, Internet Protocol, TCP or UDP, and an application protocol such as TLS or DNS.</li>
+            <li><strong>Packet Bytes:</strong> the exact hexadecimal bytes and a text representation. Selecting a field in the details tree highlights the bytes that produced it.</li>
+          </ol>
+          <figure class="wire-figure"><img src="assets/resources/wireshark-first-capture.png" alt="Wireshark packet list from a first training capture with protocol and information columns" width="1595" height="685" loading="lazy"><figcaption>The packet list is an index, not the full explanation. Select a row and expand the protocol tree before reaching a conclusion.</figcaption></figure>
+
+          <h3 id="packet-row">How to explain one packet row</h3>
+          <p>A useful beginner explanation answers five questions in order: When did the packet appear? Which endpoint sent it? Which endpoint received it? Which protocol carried it? What event does the Info column describe? Then open the details pane to verify the summary.</p>
+          <div class="wire-sequence">
+            <span><b>1</b> Read time and direction</span><span><b>2</b> Identify source and destination</span><span><b>3</b> Note protocol and ports</span><span><b>4</b> Read flags or query type</span><span><b>5</b> Verify in Packet Details</span><span><b>6</b> Write a cautious conclusion</span>
+          </div>
+          <p>For a TCP row, the Info field may show source and destination ports, flags such as <code>SYN</code>, <code>ACK</code>, <code>FIN</code>, or <code>RST</code>, sequence and acknowledgement values, window size, and payload length. A retransmission label means Wireshark observed data that appears to have been sent again. It may indicate packet loss or delay, but one labelled row does not by itself prove the cause.</p>
+
+          <h2 id="protocols">3. Recognise the protocols beginners see most often</h2>
+          <div class="wire-table-wrap"><table class="wire-table"><thead><tr><th>Protocol</th><th>What it does</th><th>What to inspect first</th></tr></thead><tbody>
+            <tr><td>ARP</td><td>Maps a local IPv4 address to a hardware address.</td><td>Who is asking, which address is requested, and whether a reply follows.</td></tr>
+            <tr><td>DNS</td><td>Translates names into addresses and returns other domain records.</td><td>Query name, record type, response code, answer, and timing.</td></tr>
+            <tr><td>ICMP</td><td>Carries network control and diagnostic messages.</td><td>Message type, code, request/reply pairing, and errors.</td></tr>
+            <tr><td>TCP</td><td>Provides connection-oriented, ordered delivery.</td><td>Endpoints, ports, flags, sequence flow, acknowledgements, and retransmissions.</td></tr>
+            <tr><td>UDP</td><td>Provides connectionless datagrams with low protocol overhead.</td><td>Endpoints, ports, request/response pattern, and application protocol.</td></tr>
+            <tr><td>TLS</td><td>Protects application data in transit.</td><td>Handshake messages, server name when available, version, alerts, and timing.</td></tr>
+            <tr><td>QUIC</td><td>Carries secure multiplexed connections over UDP and is used by HTTP/3.</td><td>Connection flow, UDP endpoints, handshake progress, and loss or timing patterns.</td></tr>
+          </tbody></table></div>
+          <p>Private IPv4 addresses such as <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, and <code>192.168.0.0/16</code> identify hosts inside private networks. Ethernet addresses describe devices on the local link, while IP addresses describe logical endpoints across networks. Ports identify the application conversation on an endpoint.</p>
+
+          <h2 id="filters">4. Use display filters without losing evidence</h2>
+          <p>A display filter changes the packet rows visible in the current view. It does not rewrite the capture file. Type a filter in the display filter bar and press Enter or choose Apply. If the expression is invalid, Wireshark marks the field accordingly. Clear the filter to return to the full capture.</p>
+          <div class="filter-grid">
+            <div><code>tcp</code><span>Show TCP packets</span></div><div><code>udp</code><span>Show UDP packets</span></div><div><code>dns</code><span>Show DNS traffic</span></div><div><code>arp</code><span>Show ARP traffic</span></div><div><code>icmp</code><span>Show ICMP traffic</span></div><div><code>tls</code><span>Show TLS traffic</span></div><div><code>quic</code><span>Show QUIC traffic</span></div><div><code>tcp.port == 443</code><span>TCP where either port is 443</span></div><div><code>ip.addr == 192.168.1.15</code><span>Traffic to or from one IPv4 address</span></div><div><code>ip.src == 192.168.1.15</code><span>Packets sent by one IPv4 address</span></div><div><code>ip.dst == 192.168.1.15</code><span>Packets received by one IPv4 address</span></div><div><code>dns or tls</code><span>Either DNS or TLS traffic</span></div>
+          </div>
+          <pre class="wire-code"><code>(ip.addr == 192.168.1.15) and (tcp.port == 443 or udp.port == 443)</code></pre>
+          <p>This combined filter limits the view to one host communicating on TCP or UDP port 443. Parentheses make the intended logic explicit. Replace the example address with an authorised endpoint from your own lab.</p>
+
+          <h2 id="workflow">5. Use statistics before scanning hundreds of rows</h2>
+          <p>A reliable first analysis begins with the shape of the capture, not an exciting-looking packet. Record the file, duration, total packets, displayed packets, and capture environment. Then use summaries to decide where deeper inspection is justified.</p>
+          <div class="wire-workflow">
+            <div><strong>Capture File Properties</strong><p>Confirm duration, packet totals, size, format, interfaces, and comments.</p></div>
+            <div><strong>Protocol Hierarchy</strong><p>See which protocols are present and their share of packets and bytes.</p></div>
+            <div><strong>Endpoints and Conversations</strong><p>Identify communicating addresses, ports, packet counts, byte counts, and direction.</p></div>
+            <div><strong>I/O Graphs</strong><p>Compare packet or byte activity over time and locate bursts or gaps.</p></div>
+            <div><strong>Expert Information</strong><p>Find notable events, then verify each one against context and packet details.</p></div>
+            <div><strong>Follow Stream</strong><p>Isolate a selected conversation and view the stream in sequence when the protocol supports it.</p></div>
+          </div>
+          <figure class="wire-figure"><img src="assets/resources/wireshark-analysis-capture.png" alt="Wireshark analysis capture displaying mixed TCP, TLS, DNS, and QUIC traffic" width="1595" height="710" loading="lazy"><figcaption>Mixed captures become manageable after you establish totals, protocol distribution, endpoints, conversations, and a focused question.</figcaption></figure>
+          <div class="wire-callout warning"><strong>Expert Information is not a verdict</strong><p>Warnings, notes, retransmissions, and colour rules identify evidence worth checking. They do not prove a security incident, a broken server, or a malicious user. Verify timing, protocol behavior, endpoint roles, repeated patterns, and the wider capture before reporting a cause.</p></div>
+
+          <h2 id="labs">6. Complete six practical labs</h2>
+          <div class="wire-labs">
+            <article><span>Lab 1</span><h3>Launch-screen tour</h3><p>Identify the menu, toolbar, display filter, open area, capture interfaces, activity graphs, capture-filter field, and status bar. Explain what each area is for.</p><strong>Deliverable:</strong><p>A labelled screenshot or written workspace map.</p></article>
+            <article><span>Lab 2</span><h3>Packet count and duration</h3><p>Open an approved capture and record total packets, displayed packets, duration, file size, and interface information from Capture File Properties.</p><strong>Deliverable:</strong><p>A five-line capture summary.</p></article>
+            <article><span>Lab 3</span><h3>Open versus capture</h3><p>Compare analysing a saved file with recording live traffic. List the permissions, scope decisions, and storage precautions required before live capture.</p><strong>Deliverable:</strong><p>A short comparison table.</p></article>
+            <article><span>Lab 4</span><h3>Explain one packet</h3><p>Choose one row and describe time, direction, endpoints, protocol, length, Info field, and the matching fields in Packet Details.</p><strong>Deliverable:</strong><p>One evidence-based paragraph.</p></article>
+            <article><span>Lab 5</span><h3>Filter a question</h3><p>Apply protocol, address, and port filters. Record total packets before filtering and displayed packets after each filter. Clear the filter between tests.</p><strong>Deliverable:</strong><p>A filter-and-result table.</p></article>
+            <article><span>Lab 6</span><h3>Statistics first</h3><p>Use Protocol Hierarchy, Endpoints, Conversations, I/O Graphs, and Expert Information before selecting two packets for closer inspection.</p><strong>Deliverable:</strong><p>A brief report with findings, limitations, and next step.</p></article>
+          </div>
+
+          <h2 id="report">7. Write a defensible beginner analysis report</h2>
+          <p>A strong report separates observations from interpretations. “The capture contains 1,250 packets and 63 percent are TCP” is an observation. “The server is failing” is an interpretation that needs supporting evidence. Use cautious language such as <em>suggests</em>, <em>is consistent with</em>, or <em>requires further verification</em> when the capture cannot establish cause.</p>
+          <div class="wire-report"><h3>JENECONK packet-analysis report template</h3><dl><div><dt>Scope and permission</dt><dd>Who authorised the analysis, what system or lab was included, and what was excluded?</dd></div><div><dt>Capture summary</dt><dd>Filename, date, duration, packet count, displayed count, file size, and interface.</dd></div><div><dt>Question</dt><dd>What specific network behavior are you trying to understand?</dd></div><div><dt>Method</dt><dd>Filters, statistics, streams, endpoints, and packets reviewed.</dd></div><div><dt>Observations</dt><dd>Measured facts with packet numbers, times, addresses, ports, and protocol details.</dd></div><div><dt>Interpretation</dt><dd>What the observations may mean, stated with appropriate confidence.</dd></div><div><dt>Limitations</dt><dd>Missing traffic, encryption, capture position, time window, or evidence not available.</dd></div><div><dt>Next step</dt><dd>The safest useful action or additional evidence required.</dd></div></dl></div>
+
+          <h2 id="mistakes">8. Avoid these beginner mistakes</h2>
+          <ul>
+            <li><strong>Capturing without permission:</strong> technical ability does not replace authorisation.</li>
+            <li><strong>Choosing the busiest interface blindly:</strong> confirm that it is the correct approved adapter.</li>
+            <li><strong>Confusing capture and display filters:</strong> one controls recording; the other controls visibility.</li>
+            <li><strong>Reporting visible rows as the total:</strong> check captured and displayed counts separately.</li>
+            <li><strong>Judging by colour alone:</strong> colour rules support scanning but do not establish meaning.</li>
+            <li><strong>Calling every retransmission an attack:</strong> retransmissions have many possible network causes.</li>
+            <li><strong>Reading only the Info column:</strong> verify the protocol tree and related packets.</li>
+            <li><strong>Publishing raw captures:</strong> protect sensitive addresses, identifiers, and application data.</li>
+            <li><strong>Ignoring capture position:</strong> what Wireshark can observe depends on where traffic was recorded.</li>
+            <li><strong>Writing conclusions without limitations:</strong> say what the evidence cannot prove.</li>
+          </ul>
+
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq-list">
+            <details><summary>Where can I find total packets and capture duration?</summary><p>Use Statistics → Capture File Properties for the complete summary. The status bar provides a quick view, but Capture File Properties is the better source for a written report.</p></details>
+            <details><summary>What is the difference between a capture filter and a display filter?</summary><p>A capture filter limits what Wireshark records during live capture. A display filter limits what you see from packets already captured. Clearing a display filter restores the hidden rows.</p></details>
+            <details><summary>Does a red or black packet mean the network was attacked?</summary><p>No. Colours are generated by configurable rules. They help draw attention to traffic patterns, but the packet details, surrounding conversation, timing, and system context determine what the traffic means.</p></details>
+            <details><summary>Can Wireshark read encrypted TLS content?</summary><p>Wireshark can analyse TLS handshakes and metadata visible in the capture. Decrypting protected application content requires appropriate session keys and authorisation; encrypted payloads are not automatically readable.</p></details>
+            <details><summary>Should I start with live capture?</summary><p>An approved saved capture is usually better for a first lesson. It is repeatable, bounded, and avoids collecting unrelated traffic while you are still learning the interface.</p></details>
+          </div>
+
+          <h2 id="sources">Continue learning</h2>
+          <p>Use the <a href="https://www.wireshark.org/docs/wsug_html/" target="_blank" rel="noreferrer">official Wireshark User's Guide</a> for current interface and feature documentation, and the <a href="https://www.wireshark.org/docs/man-pages/wireshark-filter.html" target="_blank" rel="noreferrer">official display-filter reference</a> when building more advanced expressions. Continue through JENECONK's <a href="resources.html">technology resource centre</a> or explore the <a href="training.html">AI Training Academy</a> for guided learning.</p>
+          <p>This article and workbook were developed from JENECONK's beginner network-analysis training material. The webpage is the complete public lesson; the downloadable presentation is an optional classroom and offline study companion.</p>
+        </article>
+
+        <aside class="wire-toc" aria-label="Wireshark guide contents">
+          <strong>On this page</strong>
+          <a href="#quick-answer">Packet count and duration</a><a href="#workspace">Workspace</a><a href="#panes">Packet panes</a><a href="#packet-row">Read one packet</a><a href="#protocols">Protocol guide</a><a href="#filters">Display filters</a><a href="#workflow">Analysis workflow</a><a href="#labs">Six labs</a><a href="#report">Report template</a><a href="#mistakes">Beginner mistakes</a><a href="#faq">FAQ</a>
+          <a class="btn btn-primary" href="assets/resources/jeneconk-wireshark-beginner-packet-analysis-guide.pptx" download>Download workbook</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-pad wire-download-band"><div class="container wire-download-grid"><div><p class="eyebrow">Study or teach offline</p><h2>Download the complete 78-slide Wireshark workbook.</h2><p>The presentation includes the workspace tour, menus, capture properties, packet panes, protocol explanations, filters, analysis tools, six labs, a student report template, common mistakes, and facilitator guidance.</p><div class="hero-actions"><a class="btn btn-primary" href="assets/resources/jeneconk-wireshark-beginner-packet-analysis-guide.pptx" download>Download PowerPoint workbook</a><a class="btn btn-secondary" href="https://academy.jeneconk.com" target="_blank" rel="noreferrer">Explore JENECONK Academy</a></div></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div><div><strong>Products</strong><a href="education-suite.html">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="business-suite.html">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div><div><strong>Explore</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a></div><div><strong>Company &amp; Policies</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a><a href="cookie-policy.html">Cookie Policy</a><a href="editorial-policy.html">Editorial Policy</a><a href="content-transparency.html">Content Transparency</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 815 400 8438</a><span>Port Harcourt, Nigeria</span></div></div></footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
