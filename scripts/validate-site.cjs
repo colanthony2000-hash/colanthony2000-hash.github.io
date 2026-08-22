@@ -30,6 +30,26 @@ const substantialResourcePages = [
   ["sql-for-data-analysis-beginners-guide.html", 1800],
   ["wireshark-for-beginners-packet-analysis-guide.html", 1800],
 ];
+const strengthenedCorePages = [
+  ["business.html", 550],
+  ["business-suite.html", 525],
+  ["cbt-portal.html", 500],
+  ["success-stories/index.html", 375],
+  ["continuous-assessment-guide.html", 550],
+  ["business-document-templates-guide.html", 550],
+  ["ai-for-schools.html", 525],
+  ["excel-for-school-administration.html", 525],
+];
+const strengthenedToolPages = [
+  "age-calculator.html",
+  "waec-grade-calculator.html",
+  "school-fee-calculator.html",
+  "lesson-duration-calculator.html",
+  "exam-score-percentage-calculator.html",
+  "term-average-calculator.html",
+  "invoice-generator.html",
+  "cv-checker.html",
+];
 const bannedPatterns = [
   /Ã/,
   /Â/,
@@ -43,6 +63,7 @@ const bannedPatterns = [
   /AdminFlow/i,
   /SchoolOS/i,
   /\bCBT Pro\b/i,
+  /jeneconk-study-coach\.vercel\.app/i,
 ];
 
 function walk(dir) {
@@ -167,6 +188,31 @@ for (const [page, minimumWords] of substantialResourcePages) {
   if (!source.includes('"@type": "FAQPage"')) errors.push(`${page}: missing FAQPage structured data`);
 }
 
+for (const [page, minimumWords] of strengthenedCorePages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  const words = visibleWordCount(source);
+  if (words < minimumWords) errors.push(`${page}: strengthened core page is too thin (${words} words)`);
+}
+
+for (const page of strengthenedToolPages) {
+  const words = visibleWordCount(fs.readFileSync(path.join(root, page), "utf8"));
+  if (words < 350) errors.push(`${page}: practical tool page is too thin (${words} words)`);
+}
+
+const timetableFallback = fs.readFileSync(path.join(root, "tools/class-timetable-generator/index.html"), "utf8");
+if (visibleWordCount(timetableFallback) < 250) errors.push("tools/class-timetable-generator/index.html: crawlable fallback is too thin");
+
+const studyCoach = fs.readFileSync(path.join(root, "study-coach.html"), "utf8");
+if (visibleWordCount(studyCoach) < 1000) errors.push("study-coach.html: product overview is too thin");
+if (!studyCoach.includes('"@type": "SoftwareApplication"')) errors.push("study-coach.html: missing SoftwareApplication structured data");
+if (!studyCoach.includes('"@type": "FAQPage"')) errors.push("study-coach.html: missing FAQPage structured data");
+if (!studyCoach.includes("https://studycoach.jeneconk.com/")) errors.push("study-coach.html: missing branded live application URL");
+for (const page of ["index.html", "education.html", "products.html", "academy.html", "site-index.html"]) {
+  if (!fs.readFileSync(path.join(root, page), "utf8").includes('href="study-coach.html"')) {
+    errors.push(`${page}: missing Study Coach overview link`);
+  }
+}
+
 const locationHub = fs.readFileSync(path.join(root, "school-software-support-nigeria.html"), "utf8");
 if (visibleWordCount(locationHub) < 900) errors.push("school-software-support-nigeria.html: consolidated location guide is too thin");
 for (const page of consolidatedLocationPages) {
@@ -178,11 +224,24 @@ for (const page of consolidatedLocationPages) {
 }
 
 const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
+if (/class="launch-strip"[^>]+aria-label=/i.test(homepage)) {
+  errors.push("index.html: launch strip must use its visible text as its accessible name");
+}
 for (const match of homepage.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)) {
   const target = localTarget(path.join(root, "index.html"), match[1]);
   if (target && fs.existsSync(target) && fs.statSync(target).size > 400_000) {
     errors.push(`index.html: homepage image exceeds 400 KB ${match[1]}`);
   }
+}
+
+const products = fs.readFileSync(path.join(root, "products.html"), "utf8");
+if (products.includes('class="story-image"') && !products.includes("assets/success-stories.css")) {
+  errors.push("products.html: story images require the responsive success-stories stylesheet");
+}
+
+const academyDemo = path.join(root, "assets", "academy", "maths-and-english-bot-child-demo.mp4");
+if (fs.existsSync(academyDemo) && fs.statSync(academyDemo).size > 5_000_000) {
+  errors.push("academy demo video exceeds the 5 MB delivery budget");
 }
 
 if (errors.length) {
