@@ -18,7 +18,7 @@ const strengthenedAudiencePages = [
   "solutions-for-smes.html",
   "solutions-for-government.html",
 ];
-const consolidatedLocationPages = [
+const strengthenedLocationPages = [
   "school-management-software-lagos.html",
   "school-management-software-abuja.html",
   "school-management-software-port-harcourt.html",
@@ -31,6 +31,24 @@ const substantialResourcePages = [
   ["wireshark-for-beginners-packet-analysis-guide.html", 1800],
 ];
 const strengthenedCorePages = [
+  ["about.html", 525],
+  ["solutions.html", 550],
+  ["education-suite.html", 625],
+  ["products.html", 575],
+  ["edu-suite-vs-microsoft-word.html", 525],
+  ["edu-suite-vs-manual-lesson-notes.html", 525],
+  ["best-school-management-software-nigeria.html", 550],
+  ["sample-lesson-notes.html", 550],
+  ["sample-report-comments.html", 525],
+  ["lesson-note-generator.html", 525],
+  ["report-comment-generator.html", 475],
+  ["scheme-of-work-generator.html", 475],
+  ["assessment-generator.html", 475],
+  ["record-of-work-generator.html", 450],
+  ["teacher-productivity.html", 500],
+  ["ict-solutions.html", 500],
+  ["academy-gallery.html", 450],
+  ["academy-moments.html", 450],
   ["business.html", 550],
   ["business-suite.html", 525],
   ["cbt-portal.html", 500],
@@ -39,6 +57,7 @@ const strengthenedCorePages = [
   ["business-document-templates-guide.html", 550],
   ["ai-for-schools.html", 525],
   ["excel-for-school-administration.html", 525],
+  ["success-stories/ai-bootcamp-guided-practice.html", 750],
 ];
 const strengthenedToolPages = [
   "age-calculator.html",
@@ -63,6 +82,7 @@ const bannedPatterns = [
   /AdminFlow/i,
   /SchoolOS/i,
   /\bCBT Pro\b/i,
+  /cbt\.jeneconk\.com/i,
   /jeneconk-study-coach\.vercel\.app/i,
 ];
 
@@ -215,12 +235,15 @@ for (const page of ["index.html", "education.html", "products.html", "academy.ht
 
 const locationHub = fs.readFileSync(path.join(root, "school-software-support-nigeria.html"), "utf8");
 if (visibleWordCount(locationHub) < 900) errors.push("school-software-support-nigeria.html: consolidated location guide is too thin");
-for (const page of consolidatedLocationPages) {
+for (const page of strengthenedLocationPages) {
   const source = fs.readFileSync(path.join(root, page), "utf8");
   const url = `https://jeneconk.com/${page}`;
-  if (!/name="robots" content="noindex, follow"/i.test(source)) errors.push(`${page}: consolidated location page must be noindex`);
-  if (!source.includes('rel="canonical" href="https://jeneconk.com/school-software-support-nigeria.html"')) errors.push(`${page}: missing location-hub canonical`);
-  if (urls.includes(url)) errors.push(`sitemap: consolidated location URL still included ${url}`);
+  const words = visibleWordCount(source);
+  if (words < 800) errors.push(`${page}: strengthened location page is too thin (${words} words)`);
+  if (/name="robots" content="noindex/i.test(source)) errors.push(`${page}: strengthened location page must be indexable`);
+  if (!source.includes(`rel="canonical" href="${url}"`)) errors.push(`${page}: missing self-referencing canonical`);
+  if (!source.includes('"@type":"FAQPage"')) errors.push(`${page}: missing FAQPage structured data`);
+  if (!urls.includes(url)) errors.push(`sitemap: strengthened location URL missing ${url}`);
 }
 
 const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
