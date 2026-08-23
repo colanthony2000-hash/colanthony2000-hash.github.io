@@ -269,6 +269,9 @@ if (fs.existsSync(academyDemo) && fs.statSync(academyDemo).size > 5_000_000) {
 
 for (const file of htmlFiles) {
   const source = fs.readFileSync(file, "utf8");
+  if (/--success-hero-image:\s*url\(["']?assets\//i.test(source)) {
+    errors.push(`${path.relative(root, file)}: success hero custom-property URL must be relative to assets/success-stories.css`);
+  }
   for (const match of source.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
       JSON.parse(match[1]);
