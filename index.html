@@ -26,25 +26,42 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "JENECONK Integrated Global Solutions Ltd",
-    "url": "https://jeneconk.com/",
-    "logo": "https://jeneconk.com/assets/logo.png",
-    "email": "info@jeneconk.com",
-    "telephone": "+2348154008438",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Port Harcourt",
-      "addressCountry": "NG"
-    },
-    "sameAs": [
-      "https://edu.jeneconk.com",
-      "https://business.jeneconk.com",
-      "https://academy.jeneconk.com",
-      "https://maths.jeneconk.com",
-      "https://admintraining.jeneconk.com",
-      "https://english.jeneconk.com",
-      "https://procurement-staging.jeneconk.com"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://jeneconk.com/#organization",
+        "name": "JENECONK Integrated Global Solutions Limited",
+        "alternateName": "JENECONK",
+        "url": "https://jeneconk.com/",
+        "logo": {"@type": "ImageObject", "url": "https://jeneconk.com/assets/logo.png"},
+        "email": "info@jeneconk.com",
+        "telephone": "+2348154008438",
+        "address": {"@type": "PostalAddress", "addressLocality": "Port Harcourt", "addressRegion": "Rivers State", "addressCountry": "NG"},
+        "knowsAbout": ["education technology", "AI training", "English learning", "business productivity", "procurement workflow", "digital skills"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://jeneconk.com/#website",
+        "name": "JENECONK",
+        "url": "https://jeneconk.com/",
+        "publisher": {"@id": "https://jeneconk.com/#organization"},
+        "hasPart": [
+          {"@id": "https://jeneconk.com/education-suite.html#product"},
+          {"@id": "https://jeneconk.com/academy.html#academy"},
+          {"@id": "https://jeneconk.com/jems.html#product"},
+          {"@id": "https://jeneconk.com/business-suite.html#product"},
+          {"@id": "https://jeneconk.com/smart-procurement.html#product"},
+          {"@id": "https://jeneconk.com/resources.html#collection"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://jeneconk.com/#webpage",
+        "url": "https://jeneconk.com/",
+        "name": "JENECONK | Education, Business, Procurement & AI Solutions",
+        "isPartOf": {"@id": "https://jeneconk.com/#website"},
+        "about": {"@id": "https://jeneconk.com/#organization"}
+      }
     ]
   }
   </script>

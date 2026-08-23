@@ -267,6 +267,36 @@ if (fs.existsSync(academyDemo) && fs.statSync(academyDemo).size > 5_000_000) {
   errors.push("academy demo video exceeds the 5 MB delivery budget");
 }
 
+for (const file of htmlFiles) {
+  const source = fs.readFileSync(file, "utf8");
+  for (const match of source.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      JSON.parse(match[1]);
+    } catch (error) {
+      errors.push(`${path.relative(root, file)}: invalid JSON-LD (${error.message})`);
+    }
+  }
+}
+
+const geoCorePages = ["about.html", "products.html", "education-suite.html", "training.html", "academy.html", "jems.html", "business-suite.html", "smart-procurement.html", "resources.html", "tools.html"];
+for (const page of geoCorePages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  if (!source.includes('data-geo-aeo="entity-clarity"')) errors.push(`${page}: missing GEO/AEO entity-clarity section`);
+  if (!source.includes('data-geo-aeo="20260823"')) errors.push(`${page}: missing GEO/AEO structured data`);
+}
+
+const geoAuthorityPages = ["how-to-write-lesson-notes.html", "how-to-prepare-scheme-of-work.html", "continuous-assessment-guide.html", "50-ai-tools-for-teachers-2026.html", "prompt-engineering-for-teachers.html", "ai-for-schools.html", "ai-and-prompt-engineering-professional-guide.html", "sql-for-data-analysis-beginners-guide.html", "wireshark-for-beginners-packet-analysis-guide.html", "excel-formulas-for-business-owners.html", "excel-inventory-management-guide.html", "business-document-templates-guide.html"];
+for (const page of geoAuthorityPages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  if (!source.includes('data-geo-aeo="answer-engine"')) errors.push(`${page}: missing answer-engine section`);
+  if (!source.includes('data-geo-aeo="20260823"')) errors.push(`${page}: missing GEO/AEO structured data`);
+}
+
+const geoBaseline = fs.readFileSync(path.join(root, ".github", "geo-aeo-baseline.md"), "utf8");
+const baselineQuestions = [...geoBaseline.matchAll(/^\d+\.\s+/gm)].length;
+if (baselineQuestions < 20 || baselineQuestions > 30) errors.push(`GEO/AEO baseline must contain 20-30 questions (found ${baselineQuestions})`);
+if (/currently ranks|already ranks/i.test(geoBaseline)) errors.push("GEO/AEO baseline must not claim current rankings");
+
 if (errors.length) {
   console.error(errors.join("\n"));
   console.error(`VALIDATION_FAILED ${errors.length}`);
