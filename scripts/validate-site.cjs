@@ -48,7 +48,6 @@ const strengthenedCorePages = [
   ["teacher-productivity.html", 500],
   ["ict-solutions.html", 500],
   ["academy-gallery.html", 450],
-  ["academy-moments.html", 450],
   ["business.html", 550],
   ["business-suite.html", 525],
   ["cbt-portal.html", 500],
