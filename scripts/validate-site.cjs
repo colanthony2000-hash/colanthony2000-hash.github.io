@@ -29,6 +29,9 @@ const strengthenedLocationPages = [
 const substantialResourcePages = [
   ["sql-for-data-analysis-beginners-guide.html", 1800],
   ["wireshark-for-beginners-packet-analysis-guide.html", 1800],
+  ["automation-workflow-design-guide.html", 1200],
+  ["ethical-hacking-lab-foundations.html", 1200],
+  ["canva-for-beginners-professional-design-guide.html", 1200],
 ];
 const strengthenedCorePages = [
   ["about.html", 525],
@@ -203,8 +206,8 @@ for (const [page, minimumWords] of substantialResourcePages) {
   const source = fs.readFileSync(path.join(root, page), "utf8");
   const words = visibleWordCount(source);
   if (words < minimumWords) errors.push(`${page}: substantial resource is too thin (${words} words)`);
-  if (!source.includes('"@type": "Article"')) errors.push(`${page}: missing Article structured data`);
-  if (!source.includes('"@type": "FAQPage"')) errors.push(`${page}: missing FAQPage structured data`);
+  if (!/"@type"\s*:\s*"Article"/.test(source)) errors.push(`${page}: missing Article structured data`);
+  if (!/"@type"\s*:\s*"FAQPage"/.test(source)) errors.push(`${page}: missing FAQPage structured data`);
 }
 
 for (const [page, minimumWords] of strengthenedCorePages) {

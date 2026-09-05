@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Design a reliable automation workflow from trigger to logging, with safe secret handling, testing, failure recovery and a worked content-digest example.">
+  <title>Automation Workflow Design Guide | JENECONK</title>
+  <link rel="canonical" href="https://jeneconk.com/automation-workflow-design-guide.html">
+  <link rel="stylesheet" href="assets/styles.css?v=20260905-2">
+  <link rel="stylesheet" href="assets/sql-guide.css?v=20260905-2">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Automation Workflow Design: From Trigger to Reliable Delivery">
+  <meta property="og:description" content="A practical, platform-neutral guide to planning, testing and operating useful automations safely.">
+  <meta property="og:url" content="https://jeneconk.com/automation-workflow-design-guide.html">
+  <meta property="og:image" content="https://jeneconk.com/assets/resources/ai-automation-prompting-guide.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Automation Workflow Design: From Trigger to Reliable Delivery"><meta name="twitter:description" content="Plan, test and operate useful automations without exposing credentials or protected implementation details."><meta name="twitter:image" content="https://jeneconk.com/assets/resources/ai-automation-prompting-guide.png">
+  <meta name="google-adsense-account" content="ca-pub-1616319355564791">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616319355564791" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Article","@id":"https://jeneconk.com/automation-workflow-design-guide.html#article","headline":"Automation Workflow Design: From Trigger to Reliable Delivery","description":"A practical guide to designing, testing and operating reliable automations without exposing credentials or protected implementation details.","datePublished":"2026-09-05","dateModified":"2026-09-05","author":{"@type":"Organization","name":"JENECONK Integrated Global Solutions Limited","url":"https://jeneconk.com/about.html"},"publisher":{"@id":"https://jeneconk.com/#organization"},"mainEntityOfPage":"https://jeneconk.com/automation-workflow-design-guide.html"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jeneconk.com/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://jeneconk.com/resources.html"},{"@type":"ListItem","position":3,"name":"Automation Workflow Design","item":"https://jeneconk.com/automation-workflow-design-guide.html"}]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"What are the main stages of an automation workflow?","acceptedAnswer":{"@type":"Answer","text":"A useful automation normally has six stages: trigger, fetch, generate or transform, format, publish or deliver, and log. Each stage needs an owner, defined inputs and a visible failure path."}},
+      {"@type":"Question","name":"Should API keys be written inside automation code?","acceptedAnswer":{"@type":"Answer","text":"No. Credentials should be stored in the platform's protected secret store and supplied only to the step that needs them. Non-sensitive settings can be stored separately as configuration."}},
+      {"@type":"Question","name":"Does an AI step make an automation reliable?","acceptedAnswer":{"@type":"Answer","text":"No. Reliability comes from input validation, constrained output, review rules, logging, retries and clear ownership. AI output still requires proportionate human checking."}},
+      {"@type":"Question","name":"What should be tested before an automation goes live?","acceptedAnswer":{"@type":"Answer","text":"Test normal input, missing input, duplicate runs, invalid output, unavailable services, permission failures and recovery. Confirm that logs identify the failed stage without recording secrets or unnecessary personal data."}}
+    ]}
+  ]}
+  </script>
+</head>
+<body>
+  <header class="site-header" data-header><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="nav" data-nav><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a><a href="about.html">Company</a></nav></header>
+  <main>
+    <section class="page-hero section-pad"><div class="container narrow"><nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span><span>Automation Workflow Design</span></nav><p class="eyebrow">AI and Automation</p><h1>Automation workflow design: from trigger to reliable delivery.</h1><p><strong>A reliable automation is a controlled sequence that starts from a defined event, handles data deliberately, produces a checkable result and records what happened.</strong> This guide turns a recurring task into six inspectable stages without publishing private credentials, production prompts or proprietary application logic.</p><p><strong>Last reviewed:</strong> 5 September 2026.</p></div></section>
+
+    <article class="article-body section-pad"><div class="container narrow">
+      <nav class="toc" aria-label="On this page"><strong>On this page</strong><a href="#model">Six-stage model</a><a href="#requirements">Requirements</a><a href="#paths">Implementation paths</a><a href="#secrets">Secrets and data</a><a href="#example">Worked example</a><a href="#testing">Testing and recovery</a><a href="#exercise">Practice exercise</a><a href="#faq">FAQ</a></nav>
+
+      <section id="model"><h2>The six-stage automation model</h2><p>The simplest useful model is <strong>Trigger - Fetch - Generate - Format - Publish - Log</strong>. The word "generate" can mean an AI response, a calculation, a document transformation or any other processing step. Not every workflow needs AI. The six stages are valuable because they make hidden assumptions visible.</p>
+        <div class="data-table"><table><thead><tr><th>Stage</th><th>Question to answer</th><th>Evidence of success</th></tr></thead><tbody>
+          <tr><td>Trigger</td><td>What event or schedule starts the work?</td><td>A run identifier and start time</td></tr>
+          <tr><td>Fetch</td><td>Which approved source supplies the input?</td><td>Validated input with source and retrieval status</td></tr>
+          <tr><td>Generate</td><td>What rule, model or calculation transforms it?</td><td>Output that meets a defined structure</td></tr>
+          <tr><td>Format</td><td>How must the result be prepared for its destination?</td><td>Correct fields, length, encoding and presentation</td></tr>
+          <tr><td>Publish</td><td>Where is the result delivered, and who can see it?</td><td>Destination response or saved draft identifier</td></tr>
+          <tr><td>Log</td><td>What should an operator know later?</td><td>Timestamp, outcome, failed stage and safe error summary</td></tr>
+        </tbody></table></div>
+        <p>A weak design says, "Use AI to post every morning." A testable design says, "At 7:00 a.m. on weekdays, retrieve one approved topic record, prepare a draft of no more than 180 words, validate required fields, send it to a private review destination and log the record ID and outcome." The second statement can be tested before anyone depends on it.</p>
+      </section>
+
+      <section id="requirements"><h2>Write the operating rules before writing code</h2><p>Begin with the manual process. Observe who starts it, where the source information lives, which judgement calls are made and what counts as complete. Automation should remove repeatable handling, not hide an undefined decision.</p>
+        <h3>Minimum requirements checklist</h3><ul><li>Name the workflow owner and the person who handles failures.</li><li>Define the trigger, timezone and acceptable delay.</li><li>List the approved input source and required fields.</li><li>State the transformation rule and prohibited output.</li><li>Choose a private test destination before any public destination.</li><li>Set duplicate-prevention and retry rules.</li><li>Define which records may be logged and how long they are retained.</li><li>Document a manual fallback for important work.</li></ul>
+        <p>For an AI-assisted step, add an acceptance rule. A useful rule may require a title, three factual points derived only from supplied input, a source reference and a maximum length. If the output cannot be validated automatically, route it to a human draft queue rather than publishing it directly.</p>
+      </section>
+
+      <section id="paths"><h2>Choose an implementation path that matches the job</h2><div class="data-table"><table><thead><tr><th>Path</th><th>Good fit</th><th>Important caution</th></tr></thead><tbody>
+        <tr><td>Managed script platform</td><td>Spreadsheet, email, calendar or document workflows owned by a small team</td><td>Triggers may run under the creator's account; ownership and permissions must be documented</td></tr>
+        <tr><td>Repository workflow</td><td>Versioned scripts, scheduled processing and reviewable changes</td><td>Schedules, runtime limits and secret access must be tested in the hosted environment</td></tr>
+        <tr><td>Application integration</td><td>User-specific records, authenticated actions and product workflows</td><td>Requires access control, server-side validation, monitoring and a clear data model</td></tr>
+      </tbody></table></div>
+      <p>Google documents how <a href="https://developers.google.com/apps-script/guides/triggers/installable">installable Apps Script triggers</a> behave, including account ownership and failure notifications. GitHub documents its <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax">workflow syntax and scheduled events</a>. Use the official documentation for the platform you select because schedules, permissions and limits can change.</p>
+      <h3>Platform-neutral pseudocode</h3><pre><code>on approved trigger:
+  create run identifier
+  fetch one eligible record
+  stop safely if no record exists
+  validate required fields
+  transform input under defined constraints
+  validate output structure
+  save to private review destination
+  mark source record as processed
+  log outcome without credentials or sensitive content</code></pre><p>This is intentionally architecture, not production code. Authentication, rate limiting, concurrency, privacy and destination-specific validation must be designed for the actual system.</p></section>
+
+      <section id="secrets"><h2>Separate secrets, settings and content</h2><div class="data-table"><table><thead><tr><th>Information</th><th>Examples</th><th>Where it belongs</th></tr></thead><tbody>
+        <tr><td>Secret</td><td>API token, signing key, database password</td><td>Protected secret store, never committed or printed</td></tr>
+        <tr><td>Configuration</td><td>Timezone, destination ID, word limit</td><td>Environment variable or reviewed configuration</td></tr>
+        <tr><td>Content</td><td>Approved topic, source text, review status</td><td>Authorised content store with suitable access controls</td></tr>
+        <tr><td>Operational log</td><td>Run ID, stage, status, safe error code</td><td>Restricted log with retention rules</td></tr>
+      </tbody></table></div><p>GitHub distinguishes <a href="https://docs.github.com/en/actions/concepts/security/secrets">secrets for sensitive values</a> from <a href="https://docs.github.com/en/actions/concepts/workflows-and-actions/variables">variables for non-sensitive configuration</a>. The same separation is useful on other platforms. Do not assume masking will repair a secret that has already been committed. Revoke and replace an exposed credential, then remove it from history using the platform's incident procedure.</p>
+      <p>Minimise personal data. A workflow that sends a general training reminder may need a delivery address, but it rarely needs a participant's date of birth, identity document or complete profile. Fetch only the fields required for the stated task.</p></section>
+
+      <section id="example"><h2>Worked example: a reviewed daily learning digest</h2><p><strong>Goal:</strong> prepare one short learning digest from an approved topic list and send it to a private reviewer. The workflow must never publish automatically.</p><ol><li><strong>Trigger:</strong> run once each weekday in the organisation's documented timezone.</li><li><strong>Fetch:</strong> select the earliest record whose status is "approved" and which has not been processed.</li><li><strong>Generate:</strong> create a title, a short explanation and one practice question using only the approved source text.</li><li><strong>Format:</strong> require all three fields, enforce the length limit and attach the source record ID.</li><li><strong>Publish:</strong> save as a draft or send to a private review channel.</li><li><strong>Log:</strong> record the run ID, source ID, destination response and final status. Do not log the credential or full private message.</li></ol>
+      <p><strong>Duplicate control:</strong> write a processing lock before generation, then mark the record complete only after the destination confirms receipt. If delivery fails, release or expire the lock according to a documented retry rule. <strong>Human control:</strong> the reviewer checks factual accuracy, tone, source use and audience suitability before any public posting.</p>
+      <div class="callout"><strong>Why this example is safer:</strong> it uses approved source material, sends to a private destination, preserves a traceable record ID and makes public release a separate human decision.</div></section>
+
+      <section id="testing"><h2>Test failure, not only success</h2><div class="data-table"><table><thead><tr><th>Test</th><th>Expected behaviour</th></tr></thead><tbody>
+        <tr><td>No eligible input</td><td>End normally and log "no work" without sending an empty message</td></tr>
+        <tr><td>Missing required field</td><td>Reject the record and identify the field for correction</td></tr>
+        <tr><td>Unexpected output</td><td>Do not deliver; save a safe validation error</td></tr>
+        <tr><td>Destination unavailable</td><td>Retry within a capped policy, then alert the owner</td></tr>
+        <tr><td>Two runs overlap</td><td>Only one run claims the source record</td></tr>
+        <tr><td>Credential revoked</td><td>Stop, alert the owner and avoid exposing the credential in logs</td></tr>
+      </tbody></table></div><p>Use a test account, test dataset and private destination. Start with manual execution, then enable the schedule. Review the first several runs and define a regular check for silent failures. Important automations should have a visible owner, a current runbook and a manual fallback.</p></section>
+
+      <section id="exercise"><h2>Practice: design before you build</h2><p>Choose one repeated task such as collecting assignment reminders, preparing a weekly stock summary or assembling a meeting-action draft. Write a one-page design containing the six stages, owner, input fields, validation rules, data sensitivity, duplicate control, failure alert, test cases and manual fallback. Then ask another person to identify one assumption that is still hidden.</p><p>For guided practice, see the <a href="ai-and-prompt-engineering-professional-guide.html">AI and Prompt Engineering guide</a>. JENECONK Digital Academy learners can also <a href="https://academy.jeneconk.com/assignments">submit a training assignment</a> for assessment and feedback.</p></section>
+
+      <section id="faq"><h2>Frequently asked questions</h2><h3>What are the main stages of an automation workflow?</h3><p>Trigger, fetch, generate or transform, format, publish or deliver, and log. Treating them as separate stages makes testing and ownership clearer.</p><h3>Should API keys be written inside automation code?</h3><p>No. Store credentials in the platform's protected secret facility and expose each secret only to the step that needs it.</p><h3>Does an AI step make an automation reliable?</h3><p>No. Reliability depends on validation, review, logging, retry rules and human ownership. AI output can still be incomplete or unsuitable.</p><h3>What should be tested before launch?</h3><p>Normal input, missing input, duplicate runs, invalid output, service failure, permission failure and recovery. Confirm that logs are useful without leaking secrets or personal data.</p></section>
+    </div></article>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div><div><strong>Products</strong><a href="education-suite.html">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="study-coach.html">AI Study Coach</a><a href="business-suite.html">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div><div><strong>Explore</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a></div><div><strong>Company &amp; Policies</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a><a href="cookie-policy.html">Cookie Policy</a><a href="editorial-policy.html">Editorial Policy</a><a href="content-transparency.html">Content Transparency</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a></div></div></footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
