@@ -6,12 +6,6 @@ const skipDirs = new Set([".git", "archive", "oldassets"]);
 const skipHtmlFiles = new Set(["404.html"]);
 const policyFiles = ["privacy-policy.html", "terms-of-use.html", "cookie-policy.html", "editorial-policy.html", "content-transparency.html"];
 const strengthenedAudiencePages = [
-  "edu-suite-for-primary-schools.html",
-  "edu-suite-for-secondary-schools.html",
-  "edu-suite-for-private-schools.html",
-  "edu-suite-for-government-schools.html",
-  "edu-suite-for-montessori-schools.html",
-  "edu-suite-for-cambridge-schools.html",
   "solutions-for-churches.html",
   "solutions-for-ngos.html",
   "solutions-for-hotels.html",
@@ -19,12 +13,6 @@ const strengthenedAudiencePages = [
   "solutions-for-government.html",
 ];
 const strengthenedLocationPages = [
-  "school-management-software-lagos.html",
-  "school-management-software-abuja.html",
-  "school-management-software-port-harcourt.html",
-  "school-management-software-kano.html",
-  "school-management-software-enugu.html",
-  "school-management-software-yobe-state-damaturu.html",
 ];
 const substantialResourcePages = [
   ["sql-for-data-analysis-beginners-guide.html", 1800],
@@ -32,6 +20,30 @@ const substantialResourcePages = [
   ["automation-workflow-design-guide.html", 1200],
   ["ethical-hacking-lab-foundations.html", 1200],
   ["canva-for-beginners-professional-design-guide.html", 1200],
+];
+const consolidatedNoindexPages = [
+  ...[
+    "school-management-software-lagos.html",
+    "school-management-software-abuja.html",
+    "school-management-software-port-harcourt.html",
+    "school-management-software-kano.html",
+    "school-management-software-enugu.html",
+    "school-management-software-yobe-state-damaturu.html",
+  ].map((page) => [page, "https://jeneconk.com/school-software-support-nigeria.html"]),
+  ...[
+    "edu-suite-for-primary-schools.html",
+    "edu-suite-for-secondary-schools.html",
+    "edu-suite-for-private-schools.html",
+    "edu-suite-for-government-schools.html",
+    "edu-suite-for-montessori-schools.html",
+    "edu-suite-for-cambridge-schools.html",
+    "lesson-note-generator.html",
+    "report-comment-generator.html",
+    "scheme-of-work-generator.html",
+    "assessment-generator.html",
+    "record-of-work-generator.html",
+  ].map((page) => [page, "https://jeneconk.com/education-suite.html"]),
+  ["site-index.html", "https://jeneconk.com/site-index.html"],
 ];
 const strengthenedCorePages = [
   ["about.html", 525],
@@ -43,11 +55,6 @@ const strengthenedCorePages = [
   ["best-school-management-software-nigeria.html", 550],
   ["sample-lesson-notes.html", 550],
   ["sample-report-comments.html", 525],
-  ["lesson-note-generator.html", 525],
-  ["report-comment-generator.html", 475],
-  ["scheme-of-work-generator.html", 475],
-  ["assessment-generator.html", 475],
-  ["record-of-work-generator.html", 450],
   ["teacher-productivity.html", 500],
   ["ict-solutions.html", 500],
   ["academy-gallery.html", 450],
@@ -193,6 +200,14 @@ for (const url of urls) {
   if (fs.existsSync(full) && /name="robots" content="noindex/i.test(fs.readFileSync(full, "utf8"))) {
     errors.push(`sitemap: noindex page included ${url}`);
   }
+}
+
+for (const [page, canonical] of consolidatedNoindexPages) {
+  const source = fs.readFileSync(path.join(root, page), "utf8");
+  const url = `https://jeneconk.com/${page}`;
+  if (!/name="robots" content="noindex, follow"/i.test(source)) errors.push(`${page}: consolidated page must be noindex, follow`);
+  if (!source.includes(`rel="canonical" href="${canonical}"`)) errors.push(`${page}: incorrect consolidation canonical`);
+  if (urls.includes(url)) errors.push(`sitemap: consolidated page included ${url}`);
 }
 
 for (const page of strengthenedAudiencePages) {
