@@ -18,6 +18,7 @@ const substantialResourcePages = [
   ["sql-for-data-analysis-beginners-guide.html", 1800],
   ["wireshark-for-beginners-packet-analysis-guide.html", 1800],
   ["automation-workflow-design-guide.html", 1200],
+  ["ai-topic-to-content-automation-google-sheets-gemini-telegram.html", 1800],
   ["ethical-hacking-lab-foundations.html", 1200],
   ["canva-for-beginners-professional-design-guide.html", 1200],
 ];

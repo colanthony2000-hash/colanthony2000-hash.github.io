@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Topic-to-Content Automation with Google Sheets, Gemini and Telegram | JENECONK</title>
+  <meta name="description" content="Build and troubleshoot a topic-to-content automation with Google Sheets, Apps Script, Google News RSS, Gemini and Telegram, based on a tested JENECONK classroom lab.">
+  <link rel="canonical" href="https://jeneconk.com/ai-topic-to-content-automation-google-sheets-gemini-telegram.html">
+  <link rel="stylesheet" href="assets/styles.css?v=20260905-2">
+  <link rel="stylesheet" href="assets/sql-guide.css?v=20260905-2">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="JENECONK Integrated Global Solutions Ltd">
+  <meta property="og:title" content="Build an AI Topic-to-Content Automation">
+  <meta property="og:description" content="A tested classroom workflow using Google Sheets, Apps Script, Google News RSS, Gemini and Telegram, with real errors and fixes.">
+  <meta property="og:url" content="https://jeneconk.com/ai-topic-to-content-automation-google-sheets-gemini-telegram.html">
+  <meta property="og:image" content="https://jeneconk.com/assets/resources/ai-automation-prompting-guide.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Build an AI Topic-to-Content Automation">
+  <meta name="twitter:description" content="Follow a tested Apps Script lab from topic input to Telegram delivery and spreadsheet logging.">
+  <meta name="twitter:image" content="https://jeneconk.com/assets/resources/ai-automation-prompting-guide.png">
+  <meta name="google-adsense-account" content="ca-pub-1616319355564791">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616319355564791" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Article","@id":"https://jeneconk.com/ai-topic-to-content-automation-google-sheets-gemini-telegram.html#article","headline":"Build an AI Topic-to-Content Automation with Google Sheets, Gemini and Telegram","description":"A tested classroom tutorial for building and troubleshooting a topic-to-content automation with Google Sheets, Apps Script, Google News RSS, Gemini and Telegram.","datePublished":"2026-09-05","dateModified":"2026-09-05","author":{"@type":"Person","name":"Collins Anthony","url":"https://jeneconk.com/about.html"},"publisher":{"@type":"Organization","name":"JENECONK Integrated Global Solutions Limited","url":"https://jeneconk.com/"},"mainEntityOfPage":"https://jeneconk.com/ai-topic-to-content-automation-google-sheets-gemini-telegram.html"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jeneconk.com/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://jeneconk.com/resources.html"},{"@type":"ListItem","position":3,"name":"AI Topic-to-Content Automation","item":"https://jeneconk.com/ai-topic-to-content-automation-google-sheets-gemini-telegram.html"}]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"Why is fetchRecentStories not defined in Apps Script?","acceptedAnswer":{"@type":"Answer","text":"The test function was run before the fetchRecentStories helper had been pasted and saved. Add the helper first, save the project, then run testFetchRecentStories."}},
+      {"@type":"Question","name":"Why does generateContentWithGemini say stories is undefined?","acceptedAnswer":{"@type":"Answer","text":"The helper was run directly without a data object. Run testTrendToContent or runContentBot so the calling function supplies topic, settings and stories."}},
+      {"@type":"Question","name":"Why can Gemini return HTTP 200 while CONTENT_LOG stays empty?","acceptedAnswer":{"@type":"Answer","text":"The Gemini test proves content generation and writes to the execution log, but it does not call appendRow. Run runContentBot to publish and write a row to CONTENT_LOG."}},
+      {"@type":"Question","name":"Does Google News RSS prove that a story is trending now?","acceptedAnswer":{"@type":"Answer","text":"No. The live feed can return older stories. This classroom workflow proves topic-to-content automation, not rigorous trend detection or multi-source verification."}}
+    ]}
+  ]}
+  </script>
+</head>
+<body>
+  <header class="site-header" data-header><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="nav" data-nav><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a><a href="about.html">Company</a></nav></header>
+  <main>
+    <section class="page-hero section-pad"><div class="container narrow"><nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span><span>Topic-to-content automation</span></nav><p class="eyebrow">Tested JENECONK classroom lab</p><h1>Build an AI topic-to-content automation with Google Sheets, Gemini and Telegram.</h1><p><strong>This project reads a topic from Google Sheets, fetches topic-related headlines, asks Gemini for cautious structured content, sends the result to Telegram and records the outcome.</strong> The tutorial follows the corrected order developed after live student testing and explains the failures that occurred in class.</p><div class="hero-actions"><a class="btn btn-primary" href="assets/resources/jeneconk-ai-topic-to-content-automation-training-deck.pptx">Download the training deck</a><a class="btn btn-secondary" href="#setup">Start the tutorial</a></div><p><strong>Published:</strong> 5 September 2026. <strong>Level:</strong> guided beginner-to-intermediate Apps Script lab.</p></div></section>
+
+    <article class="article-body section-pad"><div class="container narrow">
+      <nav class="toc" aria-label="On this page"><strong>On this page</strong><a href="#scope">What the lab proves</a><a href="#architecture">Architecture</a><a href="#setup">Sheets and secrets</a><a href="#build">Build order</a><a href="#fetch">Fetch stories</a><a href="#generate">Generate safely</a><a href="#publish">Publish and log</a><a href="#troubleshooting">Classroom errors</a><a href="#limitations">Limitations</a><a href="#exercise">Assignment</a><a href="#faq">FAQ</a></nav>
+
+      <section id="scope"><h2>What does this automation actually prove?</h2><p>The lab proves that a configuration value can control a complete automated workflow without requiring the learner to edit JavaScript for every topic. Apps Script reads the topic and supporting settings from a spreadsheet. It retrieves matching entries from a live Google News RSS feed, sends selected source information to Gemini, formats a Telegram message, publishes it and records the result in a separate log sheet.</p><p>Call it a <strong>topic-to-content automation</strong> or a <strong>live-feed classroom automation</strong>. Do not call it a real-time trend detector, a verified news-analysis engine or a system that guarantees the latest story. The feed can include older items, and one headline does not provide enough evidence for strong factual conclusions.</p><div class="callout"><strong>Classroom evidence:</strong> this sequence was corrected after students encountered undefined functions, helpers run without arguments and successful Gemini tests that did not populate the spreadsheet. Those failures are documented below because they teach where responsibility sits in the workflow.</div></section>
+
+      <section id="architecture"><h2>The six-stage workflow</h2><div class="data-table"><table><thead><tr><th>Stage</th><th>What happens</th><th>Proof to check</th></tr></thead><tbody>
+        <tr><td>Trigger</td><td>A learner runs the bot manually, or a time-driven Apps Script trigger starts it later.</td><td>The execution begins at <code>runContentBot()</code>.</td></tr>
+        <tr><td>Fetch</td><td>Apps Script requests topic-related Google News RSS entries.</td><td>HTTP 200 and a non-empty story list.</td></tr>
+        <tr><td>Generate</td><td>Gemini receives the topic, audience, tone, country and source headlines.</td><td>Valid structured content with a selected source.</td></tr>
+        <tr><td>Format</td><td>The code assembles headline, post, hashtags and source attribution.</td><td>A readable message without unsupported additions.</td></tr>
+        <tr><td>Publish</td><td>The Telegram Bot API sends the message to the configured chat.</td><td>Telegram HTTP 200 and a visible message.</td></tr>
+        <tr><td>Log</td><td>The main bot writes a success or failure row to <code>CONTENT_LOG</code>.</td><td>A timestamped row with status.</td></tr>
+      </tbody></table></div><p>The spreadsheet controls the workflow, Apps Script coordinates it, external services perform defined jobs, and the log preserves evidence. A scheduled trigger comes last, after every stage succeeds manually.</p></section>
+
+      <section id="setup"><h2>Set up the workbook and protect credentials</h2><h3>CONFIG sheet</h3><div class="data-table"><table><thead><tr><th>Setting</th><th>Example value</th><th>Cell</th></tr></thead><tbody><tr><td>Topic</td><td>AI</td><td>B2</td></tr><tr><td>Tone</td><td>Educational</td><td>B3</td></tr><tr><td>Audience</td><td>Young people</td><td>B4</td></tr><tr><td>Country</td><td>Nigeria</td><td>B5</td></tr></tbody></table></div><p>Changing <code>CONFIG!B2</code> later should change the fetched sources and generated output without any code edit. That is the simplest proof that configuration and implementation have been separated.</p>
+      <h3>CONTENT_LOG sheet</h3><p>Create these headings in row 1: Date, Topic, Source Headline, Source URL, Generated Headline, Post, Hashtags, Image Prompt and Status. The final function writes both successful and failed runs here. The Image Prompt field stores text only. This classroom version does not call an image-generation service.</p>
+      <h3>Script Properties</h3><p>Open Apps Script, then Project Settings and Script Properties. Add <code>GEMINI_API_KEY</code>, <code>TELEGRAM_BOT_TOKEN</code> and <code>TELEGRAM_CHAT_ID</code>. Never place real values in source code, screenshots, repositories, slides or classroom chats. Google documents Script Properties as a store for application-wide configuration, including credentials. For stricter production requirements, use a dedicated secret-management service and a documented rotation process.</p><pre><code>GEMINI_API_KEY       = replace_with_your_key
+TELEGRAM_BOT_TOKEN   = replace_with_the_BotFather_token
+TELEGRAM_CHAT_ID     = replace_with_the_numeric_chat_id</code></pre><p>The token value does not start with the word <code>bot</code>. Telegram's URL adds that prefix: <code>https://api.telegram.org/bot${botToken}/sendMessage</code>.</p></section>
+
+      <section id="build"><h2>Use the corrected build order</h2><div class="data-table"><table><thead><tr><th>Order</th><th>Function</th><th>Run directly?</th></tr></thead><tbody>
+        <tr><td>1</td><td><code>testGemini()</code></td><td>Yes. It tests the Gemini connection.</td></tr><tr><td>2</td><td><code>fetchRecentStories(topic)</code></td><td>No. It needs a topic.</td></tr><tr><td>3</td><td><code>testFetchRecentStories()</code></td><td>Yes. It supplies the topic.</td></tr><tr><td>4</td><td><code>generateContentWithGemini(data)</code></td><td>No. It needs a data object.</td></tr><tr><td>5</td><td><code>testTrendToContent()</code></td><td>Yes. It tests fetch plus generation.</td></tr><tr><td>6</td><td><code>testTelegram()</code></td><td>Yes. It tests delivery separately.</td></tr><tr><td>7</td><td><code>sendToTelegram(message)</code></td><td>No. It needs a message.</td></tr><tr><td>8</td><td><code>runContentBot()</code></td><td>Yes. It runs the complete workflow.</td></tr>
+      </tbody></table></div><p>The original classroom handout placed the fetch test before the fetch helper. Students then ran a function that called code that did not yet exist. The corrected sequence always defines a helper before the test that calls it.</p></section>
+
+      <section id="fetch"><h2>Fetch topic-related stories before testing the fetch</h2><pre><code>function fetchRecentStories(topic) {
+  const query = encodeURIComponent(topic);
+  const url = `https://news.google.com/rss/search?q=${query}` +
+    `&amp;hl=en-NG&amp;gl=NG&amp;ceid=NG:en`;
+
+  const response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
+  if (response.getResponseCode() !== 200) {
+    throw new Error(`News fetch failed: HTTP ${response.getResponseCode()}`);
+  }
+
+  const channel = XmlService.parse(response.getContentText())
+    .getRootElement().getChild('channel');
+  const items = channel.getChildren('item');
+
+  return items.slice(0, 8).map(item =&gt; ({
+    title: item.getChildText('title'),
+    link: item.getChildText('link'),
+    published: item.getChildText('pubDate')
+  }));
+}
+
+function testFetchRecentStories() {
+  const sheet = SpreadsheetApp.getActive().getSheetByName('CONFIG');
+  if (!sheet) throw new Error('CONFIG sheet was not found.');
+  const topic = sheet.getRange('B2').getValue().toString().trim();
+  if (!topic) throw new Error('Enter a topic in CONFIG!B2.');
+  const stories = fetchRecentStories(topic);
+  Logger.log(`STORIES FOUND: ${stories.length}`);
+  stories.forEach((story, index) =&gt; Logger.log(`${index + 1}. ${story.title}`));
+}</code></pre><p>Run <code>testFetchRecentStories()</code>, not the helper. A successful fetch proves that the URL responded and the XML could be parsed. It does not prove freshness, importance or factual completeness.</p></section>
+
+      <section id="generate"><h2>Give the generator data and strict factual boundaries</h2><p>The generator is a helper. Its first job should be rejecting a direct run with a useful error instead of allowing a vague JavaScript failure.</p><pre><code>function generateContentWithGemini(data) {
+  if (!data) {
+    throw new Error(
+      'Do not run generateContentWithGemini directly. ' +
+      'Run testTrendToContent or runContentBot instead.'
+    );
+  }
+  if (!data.stories || !data.stories.length) {
+    throw new Error('No stories were supplied to Gemini.');
+  }
+
+  const apiKey = PropertiesService.getScriptProperties()
+    .getProperty('GEMINI_API_KEY');
+  if (!apiKey) throw new Error('GEMINI_API_KEY is missing.');
+
+  // Verify a currently supported model in the official Gemini documentation.
+  const model = 'gemini-3.5-flash';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/` +
+    `${model}:generateContent`;
+
+  const sourceText = data.stories.map((story, i) =&gt;
+    `${i + 1}. ${story.title}\nPublished: ${story.published}\nURL: ${story.link}`
+  ).join('\n\n');
+
+  const prompt = `Create one short social post from the supplied headlines.
+Treat each supplied headline as the only verified factual information.
+Preserve attribution. Do not invent statistics, quotations, causes,
+predictions or conclusions. Clearly frame commentary as commentary.
+
+Topic: ${data.topic}
+Country/context: ${data.country}
+Audience: ${data.audience}
+Tone: ${data.tone}
+
+Sources:\n${sourceText}
+
+Return JSON with sourceIndex, headline, post, hashtags and imagePrompt.`;
+
+  const response = UrlFetchApp.fetch(url, {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { 'x-goog-api-key': apiKey },
+    payload: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { responseMimeType: 'application/json' }
+    }),
+    muteHttpExceptions: true
+  });
+  if (response.getResponseCode() !== 200) {
+    throw new Error(`Gemini failed: HTTP ${response.getResponseCode()}`);
+  }
+
+  const body = JSON.parse(response.getContentText());
+  const generated = JSON.parse(body.candidates[0].content.parts[0].text);
+  let sourceIndex = Number(generated.sourceIndex) - 1;
+  if (sourceIndex &lt; 0 || sourceIndex &gt;= data.stories.length) sourceIndex = 0;
+  const source = data.stories[sourceIndex];
+
+  return {
+    sourceHeadline: source.title,
+    sourceUrl: source.link,
+    headline: generated.headline,
+    post: generated.post,
+    hashtags: generated.hashtags,
+    imagePrompt: generated.imagePrompt
+  };
+}</code></pre><p>Structured JSON helps the next function find required fields, but valid JSON does not guarantee factual or suitable content. Google explicitly recommends validating structured output against application requirements. Check the source selection, attribution, length, required fields and prohibited claims before delivery.</p></section>
+
+      <section id="publish"><h2>Only the complete bot publishes and writes CONTENT_LOG</h2><p>Test Telegram separately first. Send the new bot a message before calling <code>getUpdates</code>, then obtain the numeric chat ID from the returned update. Telegram documents <code>getUpdates</code> and <code>sendMessage</code> as Bot API methods. Keep the test destination private while learning.</p><pre><code>function sendToTelegram(message) {
+  if (!message) throw new Error('A Telegram message is required.');
+  const props = PropertiesService.getScriptProperties();
+  const botToken = props.getProperty('TELEGRAM_BOT_TOKEN');
+  const chatId = props.getProperty('TELEGRAM_CHAT_ID');
+  if (!botToken || !chatId) throw new Error('Telegram settings are missing.');
+
+  const response = UrlFetchApp.fetch(
+    `https://api.telegram.org/bot${botToken}/sendMessage`,
+    {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({ chat_id: chatId, text: message }),
+      muteHttpExceptions: true
+    }
+  );
+  if (response.getResponseCode() !== 200) {
+    throw new Error(`Telegram failed: HTTP ${response.getResponseCode()}`);
+  }
+}
+
+function writePublishedRow(logSheet, topic, content) {
+  logSheet.appendRow([
+    new Date(), topic, content.sourceHeadline, content.sourceUrl,
+    content.headline, content.post, content.hashtags,
+    content.imagePrompt, 'PUBLISHED'
+  ]);
+}</code></pre><h3>The complete orchestration function</h3><pre><code>function runContentBot() {
+  const spreadsheet = SpreadsheetApp.getActive();
+  const configSheet = spreadsheet.getSheetByName('CONFIG');
+  const logSheet = spreadsheet.getSheetByName('CONTENT_LOG');
+  if (!configSheet) throw new Error('CONFIG sheet was not found.');
+  if (!logSheet) throw new Error('CONTENT_LOG sheet was not found.');
+
+  const topic = configSheet.getRange('B2').getValue().toString().trim();
+  const tone = configSheet.getRange('B3').getValue().toString().trim();
+  const audience = configSheet.getRange('B4').getValue().toString().trim();
+  const country = configSheet.getRange('B5').getValue().toString().trim();
+  if (!topic) throw new Error('Enter a topic in CONFIG!B2.');
+
+  try {
+    const stories = fetchRecentStories(topic);
+    if (!stories.length) throw new Error('No stories found for this topic.');
+
+    const content = generateContentWithGemini({
+      topic, tone, audience, country, stories
+    });
+    const telegramMessage = `${content.headline}\n\n` +
+      `${content.post}\n\n${content.hashtags}\n\n` +
+      `Source: ${content.sourceHeadline}`;
+
+    sendToTelegram(telegramMessage);
+    writePublishedRow(logSheet, topic, content);
+    Logger.log('FULL AUTOMATION COMPLETED SUCCESSFULLY');
+  } catch (error) {
+    logSheet.appendRow([
+      new Date(), topic, '', '', '', '', '', '',
+      `FAILED: ${error.message}`
+    ]);
+    throw error;
+  }
+}</code></pre><p><code>runContentBot()</code> reads CONFIG, calls the fetch helper, supplies the full data object to Gemini, formats the result, sends it to Telegram and writes the final status. Never log tokens, API keys or full sensitive payloads.</p><p>Run the complete bot manually and check both Telegram and CONTENT_LOG. Change only <code>CONFIG!B2</code>, run it again and confirm that the source and output change. Add a time-driven trigger only after those checks pass. Delete any five-minute demonstration trigger afterward so it does not continue posting.</p></section>
+
+      <section id="troubleshooting"><h2>Three classroom errors and what they reveal</h2><div class="data-table"><table><thead><tr><th>Error</th><th>Cause</th><th>Correction</th></tr></thead><tbody>
+        <tr><td><code>ReferenceError: fetchRecentStories is not defined</code></td><td>The test ran before the helper had been pasted and saved.</td><td>Define <code>fetchRecentStories(topic)</code>, save, then run <code>testFetchRecentStories()</code>.</td></tr>
+        <tr><td><code>Cannot read properties of undefined (reading 'stories')</code></td><td>The learner ran <code>generateContentWithGemini(data)</code> directly, so no data object existed.</td><td>Run <code>testTrendToContent()</code> or <code>runContentBot()</code>. Keep the explicit <code>if (!data)</code> guard.</td></tr>
+        <tr><td>Gemini returns HTTP 200 but CONTENT_LOG is empty</td><td><code>testTrendToContent()</code> proves fetch and generation only. It has no <code>appendRow()</code>.</td><td>Run <code>runContentBot()</code>, then check Telegram and CONTENT_LOG.</td></tr>
+      </tbody></table></div><h3>Two Telegram checks</h3><p>An empty <code>{"ok":true,"result":[]}</code> response usually means the bot has not received a message yet, or there are no pending updates. Send the bot a message and call <code>getUpdates</code> again. If delivery fails, confirm that the Script Property contains the raw BotFather token without a <code>bot</code> prefix and that the numeric chat ID is present.</p></section>
+
+      <section id="limitations"><h2>Accuracy, safety and production limitations</h2><ul><li>Google News RSS can return older entries. Add an explicit date threshold before claiming recency.</li><li>A headline is limited evidence. Public or consequential content needs source review and, where appropriate, verification against the original publisher and additional authoritative sources.</li><li>The classroom version produces an image prompt as text. It does not generate or publish an image.</li><li>The basic version has no human approval queue. Use a private Telegram destination during training and add an approval gate before public business publishing.</li><li>A production system needs rate-limit handling, retry limits, duplicate protection, monitoring, retention rules and a credential-rotation process.</li><li>Do not process private student, customer or employee information in this exercise.</li></ul><p>Gemini model names, API versions, quotas and response options can change. Check the current Gemini API documentation before teaching or running the lab. The Telegram Bot API also evolves, so validate endpoint requirements against its official reference.</p><p><strong>Official references:</strong> <a href="https://ai.google.dev/api/generate-content" target="_blank" rel="noreferrer">Gemini generateContent API</a>, <a href="https://ai.google.dev/gemini-api/docs/structured-output" target="_blank" rel="noreferrer">Gemini structured output</a>, <a href="https://developers.google.com/apps-script/guides/properties" target="_blank" rel="noreferrer">Apps Script Properties Service</a>, and <a href="https://core.telegram.org/bots/api" target="_blank" rel="noreferrer">Telegram Bot API</a>.</p></section>
+
+      <section id="exercise"><h2>Student assignment and completion evidence</h2><ol><li>Build CONFIG and CONTENT_LOG with the fields shown above.</li><li>Store placeholder-free credentials in Script Properties and test each service independently.</li><li>Run the full bot manually and show the Telegram output beside its matching CONTENT_LOG row.</li><li>Change only the topic cell and demonstrate a different source and generated result.</li><li>Explain why the two helper functions should not be run directly.</li><li>Explain why HTTP 200 from Gemini does not prove that Telegram or the spreadsheet step succeeded.</li><li>Create one time-driven test run, capture the evidence, then remove the short-interval trigger.</li><li>Identify one claim in the generated post that still requires human review.</li></ol><p>A complete submission includes the code, redacted screenshots, the relevant log row and a short explanation of each stage. Remove or conceal API keys, bot tokens, chat IDs, email addresses and unrelated personal information before sharing.</p><div class="hero-actions"><a class="btn btn-primary" href="https://academy.jeneconk.com/assignments">Submit a training assignment</a><a class="btn btn-secondary" href="assets/resources/jeneconk-ai-topic-to-content-automation-training-deck.pptx">Download the classroom deck</a></div></section>
+
+      <section id="faq"><h2>Frequently asked questions</h2><h3>Why is fetchRecentStories not defined?</h3><p>The fetch test ran before the helper existed in the saved project. Paste and save the helper first, then run the test function.</p><h3>Why does the generator say stories is undefined?</h3><p>You ran a helper that expects a data object. Run the test or main orchestration function so it supplies the topic, settings and stories.</p><h3>Why can Gemini return HTTP 200 while CONTENT_LOG remains empty?</h3><p>The connection or generation test does not write to the sheet. The complete <code>runContentBot()</code> workflow contains the logging step.</p><h3>Does this automation generate images?</h3><p>No. It stores a text prompt for a possible future image workflow. Image generation and Telegram <code>sendPhoto</code> are outside the classroom Codes 1–8.</p><h3>Does the feed prove that a story is trending?</h3><p>No. It returns topic-related entries and may include older stories. Rigorous trend detection requires freshness rules, stronger signals and verification.</p></section>
+
+      <section><h2>Continue learning</h2><p>Use the <a href="automation-workflow-design-guide.html">Automation Workflow Design guide</a> to add ownership, duplicate control, recovery and monitoring. Use the <a href="ai-and-prompt-engineering-professional-guide.html">AI and Prompt Engineering guide</a> to improve task definition, context, constraints and review. The <a href="training.html">JENECONK AI Training Academy</a> connects these ideas to guided practice and assessed assignments.</p></section>
+    </div></article>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div><div><strong>Products</strong><a href="education-suite.html">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="study-coach.html">AI Study Coach</a><a href="business-suite.html">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div><div><strong>Explore</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a></div><div><strong>Company &amp; Policies</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a><a href="cookie-policy.html">Cookie Policy</a><a href="editorial-policy.html">Editorial Policy</a><a href="content-transparency.html">Content Transparency</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a></div></div></footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
