@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Power BI DAX foundations: build a sound model, choose measures or calculated columns, write first calculations and practise with a small sales dataset.">
+  <title>Power BI DAX Foundations: A Practical Beginner Guide | JENECONK</title>
+  <link rel="canonical" href="https://jeneconk.com/power-bi-dax-foundations.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css?v=20260815-4">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <meta property="og:site_name" content="JENECONK Integrated Global Solutions Ltd">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Power BI DAX Foundations: A Practical Beginner Guide">
+  <meta property="og:description" content="A practical introduction to Power BI data models, measures, calculated columns, filter context and clear DAX calculations.">
+  <meta property="og:url" content="https://jeneconk.com/power-bi-dax-foundations.html">
+  <meta property="og:image" content="https://jeneconk.com/assets/exceltrain.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Power BI DAX Foundations: A Practical Beginner Guide">
+  <meta name="twitter:description" content="Build a clean model, write your first DAX measures and practise the reasoning behind trustworthy Power BI reports.">
+  <meta name="twitter:image" content="https://jeneconk.com/assets/exceltrain.png">
+  <meta name="google-adsense-account" content="ca-pub-1616319355564791">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616319355564791" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Power BI DAX Foundations: A Practical Beginner Guide",
+    "description": "An original practical introduction to Power BI DAX, including semantic models, measures, calculated columns, filter context and first calculations.",
+    "datePublished": "2026-10-01",
+    "dateModified": "2026-10-01",
+    "image": "https://jeneconk.com/assets/exceltrain.png",
+    "author": {"@type": "Organization", "name": "JENECONK Integrated Global Solutions Ltd"},
+    "publisher": {"@type": "Organization", "name": "JENECONK", "logo": {"@type": "ImageObject", "url": "https://jeneconk.com/assets/logo.png"}},
+    "mainEntityOfPage": "https://jeneconk.com/power-bi-dax-foundations.html"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation"><span></span><span></span><span></span></button>
+    <nav class="nav" data-nav><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a><a href="about.html">Company</a></nav>
+  </header>
+  <main>
+    <section class="page-hero section-pad">
+      <div class="container narrow">
+        <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span><span>Power BI DAX</span></nav>
+        <p class="eyebrow">Data analysis · beginner lesson</p>
+        <h1>Power BI DAX foundations: build calculations people can trust.</h1>
+        <p>Before a dashboard can answer a business question, its data model and calculations must be clear. This lesson shows where DAX fits, how to select the right calculation type and how to write a small set of useful measures.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#first-measures">Write your first measures</a><a class="btn btn-secondary" href="assets/resources/power-bi-dax-foundations-manual.pdf">Download the study manual (PDF)</a></div>
+      </div>
+    </section>
+    <section class="section-pad">
+      <div class="container article-layout">
+        <article class="article-body">
+          <p class="article-meta">Published 1 October 2026 by JENECONK · Approx. 12-minute lesson</p>
+          <h2>Start with the decision, not the formula</h2>
+          <p>Power BI is useful when someone needs a dependable answer from data: Which product line is growing? How did sales change this month? Which class has an attendance concern? DAX is the calculation language that lets a report answer those questions consistently.</p>
+          <p>It is not a substitute for clean data. A trustworthy report follows a sequence: collect records, clean and shape them, build a model, define calculations, then design visuals around real decisions. If a number cannot be traced back to a clear business definition, a polished chart will not make it reliable.</p>
+          <h2>Know the three calculation choices</h2>
+          <div class="table-scroll"><table class="data-table"><thead><tr><th>Choose this</th><th>Use it when</th><th>Example</th></tr></thead><tbody>
+            <tr><th>Measure</th><td>The answer should change as a report is filtered.</td><td>Total sales for the selected month, region or product.</td></tr>
+            <tr><th>Calculated column</th><td>Each row needs a stored label or value for grouping, sorting or relationships.</td><td>A price band, delivery status or a year-month key.</td></tr>
+            <tr><th>Calculated table</th><td>The model needs a new table derived from existing data.</td><td>A date table or a small summary table.</td></tr>
+          </tbody></table></div>
+          <p>For most report totals, start with a <strong>measure</strong>. Measures are dynamic: the same formula can show total sales for all time, one branch or one category depending on the filters currently applied. Calculated columns evaluate one source row at a time and take space in the model, so use them deliberately.</p>
+          <h2>Model before you calculate</h2>
+          <p>A model describes the meaning and relationship of the tables behind a report. A simple sales model often has one fact table—many transaction rows—and supporting dimensions such as Date, Product, Customer or Location. The fact table holds measurable events; the dimension tables give those events context.</p>
+          <ul>
+            <li><strong>Set the grain:</strong> state what one row in the fact table represents, such as one order line or one learner attendance event.</li>
+            <li><strong>Use stable keys:</strong> connect tables with identifiers rather than names that may change or repeat.</li>
+            <li><strong>Prefer a star shape:</strong> let dimensions filter the fact table through clear, one-to-many relationships.</li>
+            <li><strong>Make dates usable:</strong> connect a proper date table when reporting by month, quarter or year.</li>
+          </ul>
+          <p>Take time to remove duplicate headers, inconsistent spellings, blank keys and accidental totals from source files in Power Query before writing DAX. Formula-writing is much easier once the model tells the truth.</p>
+          <h2 id="first-measures">Write three first measures</h2>
+          <p>Imagine a <code>Sales</code> table with <code>Sales Amount</code>, <code>Quantity</code> and <code>Order ID</code> columns. Create measures in the model and give each one a business-friendly name.</p>
+          <pre><code>Total Sales = SUM(Sales[Sales Amount])
+
+Total Quantity = SUM(Sales[Quantity])
+
+Average Order Value =
+DIVIDE([Total Sales], DISTINCTCOUNT(Sales[Order ID]))</code></pre>
+          <p>The square brackets in <code>[Total Sales]</code> refer to another measure. <code>DIVIDE</code> is preferable to the slash operator for ratios because it handles a zero denominator safely. Add these measures to cards and a table with Date and Product fields, then change a slicer. The totals should respond to the filter selection without rewriting the formula.</p>
+          <h2>Understand filter context in plain language</h2>
+          <p>Filter context is simply the part of the model a measure is being asked to consider. A report page filtered to “Port Harcourt” and “September” gives a measure a smaller, specific set of rows. A measure such as <code>[Total Sales]</code> recalculates against that set.</p>
+          <p>This is why a measure is more than a stored number. It is a reusable business definition. Write the definition once, then allow a report reader to explore it by date, category, branch or another valid dimension. Test a measure in a table before trusting it in a KPI card; row-level checks quickly reveal missing relationships or unexpected filters.</p>
+          <h2>Use variables to make important calculations readable</h2>
+          <p>As formulas grow, variables make the logic easier to review and less error-prone. The following measure names the two values before calculating a margin.</p>
+          <pre><code>Profit Margin =
+VAR Revenue = [Total Sales]
+VAR Profit = [Total Profit]
+RETURN
+DIVIDE(Profit, Revenue)</code></pre>
+          <p>Use clear measure names, format currency and percentages correctly, and put related measures in display folders if the model becomes large. Good DAX is code that another analyst can understand, test and maintain.</p>
+          <h2>A 30-minute practice routine</h2>
+          <ol>
+            <li>Choose a small, non-sensitive sales, attendance or inventory dataset.</li>
+            <li>Write one sentence defining the grain of the main table.</li>
+            <li>Create a Date table and connect it to the fact table if dates are available.</li>
+            <li>Create <code>Total Sales</code>, <code>Total Quantity</code> and one safe ratio using <code>DIVIDE</code>.</li>
+            <li>Place the measures in a table with one category field and check that totals match the source data.</li>
+            <li>Add a date or category slicer and explain in words why each number changed.</li>
+          </ol>
+          <h2>Common beginner mistakes</h2>
+          <ul>
+            <li>Creating a calculated column for every total instead of using a measure.</li>
+            <li>Writing calculations before confirming the table grain and relationships.</li>
+            <li>Mixing two different definitions of a metric, such as sales before and after returns.</li>
+            <li>Using a dashboard visual without testing the same measure in a simple table first.</li>
+            <li>Sharing source files containing personal, financial or confidential information without permission.</li>
+          </ul>
+          <h2>Continue your data-analysis path</h2>
+          <p>Use the companion manual for a fuller guided course on the same foundations, then continue with the <a href="sql-for-data-analysis-beginners-guide.html">SQL for Data Analysis guide</a> to understand tables and queries, or review the broader <a href="power-bi-for-business-reporting.html">Power BI reporting introduction</a>. Learners and organizations who want instructor-led support can explore <a href="training.html">JENECONK data-analysis training</a>.</p>
+          <p><strong>Study companion:</strong> <a href="assets/resources/power-bi-dax-foundations-manual.pdf">Download “Power BI DAX — From Complete Beginner to Professional (Volume 1)” (PDF)</a>. Use the guide above to practise the core ideas first; the PDF expands the lessons and exercises.</p>
+        </article>
+        <aside class="article-sidebar">
+          <div class="sidebar-card"><span>What you will learn</span><h3>Build the right base</h3><p>Understand models, select measures or columns correctly, and write calculations that respond to report filters.</p><a class="btn btn-primary" href="#first-measures">Start the measures</a></div>
+          <div class="sidebar-card"><span>Related learning</span><div class="sidebar-links"><a href="resources.html#data-analysis">Data-analysis resources</a><a href="sql-for-data-analysis-beginners-guide.html">SQL foundations</a><a href="training.html">Training programs</a><a href="contact.html">Ask about a cohort</a></div></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div>
+      <div><strong>Products</strong><a href="education-suite.html">Edu Suite 2.0</a><a href="jems.html">JEMS English Mastery</a><a href="study-coach.html">AI Study Coach</a><a href="business-suite.html">Business Suite</a><a href="smart-procurement.html">Smart Procurement</a><a href="cbt-portal.html">CBT Setup Enquiry</a></div>
+      <div><strong>Explore</strong><a href="education.html">Education</a><a href="business.html">Business</a><a href="training.html">AI Training Academy</a><a href="resources.html">Resources</a><a href="tools.html">Tools</a><a href="products.html">Products</a></div>
+      <div><strong>Company &amp; Policies</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a><a href="cookie-policy.html">Cookie Policy</a><a href="editorial-policy.html">Editorial Policy</a><a href="content-transparency.html">Content Transparency</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 815 400 8438</a><span>Port Harcourt, Nigeria</span></div>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
