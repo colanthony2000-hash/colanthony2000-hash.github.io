@@ -21,7 +21,7 @@ function relativePrefix(file) {
 
 function activeTarget(file) {
   const name = path.basename(file);
-  if (["education-suite.html", "jems.html", "business-suite.html", "smart-procurement.html", "cbt-portal.html"].includes(name)) return "products.html";
+  if (["education-suite.html", "jems.html", "business-suite.html", "koboledger.html", "smart-procurement.html", "cbt-portal.html"].includes(name)) return "products.html";
   if (["academy.html", "academy-gallery.html", "academy-moments.html"].includes(name)) return "training.html";
   return name;
 }
@@ -50,7 +50,7 @@ function footer(prefix) {
   return `<footer class="site-footer">
     <div class="container footer-grid">
       <div><a class="brand footer-brand" href="${prefix}index.html"><img class="brand-logo" src="${prefix}assets/logo.png" alt="" width="40" height="38"><span><strong>JENECONK</strong><small>Integrated Global Solutions</small></span></a><p>Practical technology systems for education, business, training and operational work.</p></div>
-      <div><strong>Products</strong><a href="${prefix}education-suite.html">Edu Suite 2.0</a><a href="${prefix}jems.html">JEMS English Mastery</a><a href="${prefix}business-suite.html">Business Suite</a><a href="${prefix}smart-procurement.html">Smart Procurement</a><a href="${prefix}cbt-portal.html">CBT Setup Enquiry</a></div>
+      <div><strong>Products</strong><a href="${prefix}education-suite.html">Edu Suite 2.0</a><a href="${prefix}jems.html">JEMS English Mastery</a><a href="${prefix}business-suite.html">Business Suite</a><a href="${prefix}koboledger.html">KoboLedger</a><a href="${prefix}smart-procurement.html">Smart Procurement</a><a href="${prefix}cbt-portal.html">CBT Setup Enquiry</a></div>
       <div><strong>Explore</strong><a href="${prefix}education.html">Education</a><a href="${prefix}business.html">Business</a><a href="${prefix}training.html">AI Training Academy</a><a href="${prefix}resources.html">Resources</a><a href="${prefix}tools.html">Tools</a><a href="${prefix}products.html">Products</a></div>
       <div><strong>Company &amp; Policies</strong><a href="${prefix}about.html">About</a><a href="${prefix}contact.html">Contact</a><a href="${prefix}privacy-policy.html">Privacy Policy</a><a href="${prefix}terms-of-use.html">Terms of Use</a><a href="${prefix}cookie-policy.html">Cookie Policy</a><a href="${prefix}editorial-policy.html">Editorial Policy</a><a href="${prefix}content-transparency.html">Content Transparency</a><a href="mailto:info@jeneconk.com">info@jeneconk.com</a><a href="https://wa.me/2348154008438" target="_blank" rel="noreferrer">+234 815 400 8438</a><span>Port Harcourt, Nigeria</span></div>
     </div>
