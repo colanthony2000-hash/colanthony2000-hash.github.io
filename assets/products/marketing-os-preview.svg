@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">JENECONK Marketing OS campaign workspace</title>
+  <desc id="desc">Campaign workspace preview with social copy, a branded advert and a short-video plan.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111c31"/><stop offset="1" stop-color="#243e50"/></linearGradient><linearGradient id="accent" x2="1"><stop stop-color="#ffb84e"/><stop offset="1" stop-color="#f47756"/></linearGradient></defs>
+  <rect width="900" height="560" rx="28" fill="url(#bg)"/><circle cx="770" cy="80" r="150" fill="#d4f46d" opacity=".08"/>
+  <text x="54" y="60" fill="#d8e5ef" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">JENECONK / MARKETING OS</text>
+  <text x="54" y="121" fill="#fff" font-family="Arial,sans-serif" font-size="35" font-weight="700">One campaign. Ready-to-review content.</text>
+  <rect x="54" y="155" width="792" height="1" fill="#52677a"/>
+  <rect x="54" y="187" width="360" height="300" rx="18" fill="#f6f4ed"/>
+  <rect x="74" y="207" width="320" height="155" rx="12" fill="url(#accent)"/>
+  <circle cx="334" cy="238" r="42" fill="#fff" opacity=".22"/><path d="M105 329h218" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".8"/><path d="M105 348h150" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".65"/>
+  <text x="78" y="394" fill="#17253b" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">BRANDED ADVERT IMAGE</text>
+  <text x="78" y="432" fill="#17253b" font-family="Arial,sans-serif" font-size="17" font-weight="700">Your next campaign, made clear.</text>
+  <text x="78" y="459" fill="#536275" font-family="Arial,sans-serif" font-size="14">Visual direction • offer • audience</text>
+  <rect x="440" y="187" width="406" height="142" rx="18" fill="#1c2e43" stroke="#445a70"/>
+  <circle cx="472" cy="222" r="9" fill="#d4f46d"/><text x="494" y="228" fill="#d4f46d" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.4">SOCIAL POST</text>
+  <text x="472" y="266" fill="#fff" font-family="Arial,sans-serif" font-size="16">Campaign caption and call to action</text><text x="472" y="294" fill="#bac7d5" font-family="Arial,sans-serif" font-size="14">Prepared for the selected audience and channel.</text>
+  <rect x="440" y="345" width="406" height="142" rx="18" fill="#1c2e43" stroke="#445a70"/>
+  <circle cx="472" cy="380" r="9" fill="#f47756"/><text x="494" y="386" fill="#ffb99f" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.4">SHORT VIDEO PLAN</text>
+  <rect x="472" y="410" width="56" height="56" rx="10" fill="#304960"/><path d="m494 423 18 15-18 15z" fill="#fff"/>
+  <text x="548" y="431" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">Review before sharing</text><text x="548" y="456" fill="#bac7d5" font-family="Arial,sans-serif" font-size="13">You approve every campaign asset.</text>
+</svg>

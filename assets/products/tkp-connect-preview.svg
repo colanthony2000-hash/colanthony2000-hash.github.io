@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">TKP Connect church visitor and member care platform</title>
+  <desc id="desc">Church connection workflow preview for welcome, prayer, fellowship and ongoing discipleship care.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#15243a"/><stop offset="1" stop-color="#342344"/></linearGradient><linearGradient id="card" x2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#fff5ee"/></linearGradient></defs>
+  <rect width="900" height="560" rx="28" fill="url(#bg)"/><circle cx="760" cy="80" r="170" fill="#f28c78" opacity=".12"/>
+  <text x="54" y="59" fill="#f3c7b8" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2.5">TKP CONNECT / RCCG THE KING'S PALACE</text>
+  <text x="54" y="116" fill="#fff" font-family="Arial,sans-serif" font-size="36" font-weight="700">A welcome that continues after Sunday.</text>
+  <text x="54" y="151" fill="#d4c8d6" font-family="Arial,sans-serif" font-size="16">Visitor follow-up • prayer care • belonging • discipleship</text>
+  <path d="M154 315H744" stroke="#755c78" stroke-width="4" stroke-linecap="round"/>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="54" y="218" width="176" height="186" rx="18" fill="url(#card)"/><circle cx="142" cy="274" r="31" fill="#f3c2a7"/><path d="M128 277c0-9 6-16 14-16s14 7 14 16v9h-28z" fill="#773d60"/><circle cx="142" cy="255" r="8" fill="#773d60"/><text x="142" y="341" fill="#27314a" font-size="17" font-weight="700">WELCOME</text><text x="142" y="368" fill="#667085" font-size="13">Visitor connection</text>
+    <rect x="267" y="218" width="176" height="186" rx="18" fill="url(#card)"/><circle cx="355" cy="274" r="31" fill="#f7d38a"/><path d="M355 252c-17 14-22 29 0 44 22-15 17-30 0-44z" fill="#9a4c66"/><text x="355" y="341" fill="#27314a" font-size="17" font-weight="700">PRAYER CARE</text><text x="355" y="368" fill="#667085" font-size="13">Private requests</text>
+    <rect x="480" y="218" width="176" height="186" rx="18" fill="url(#card)"/><circle cx="568" cy="274" r="31" fill="#bce4d9"/><circle cx="559" cy="269" r="8" fill="#28695c"/><circle cx="578" cy="269" r="8" fill="#28695c"/><path d="M546 291c2-11 23-11 26 0M566 291c2-11 23-11 26 0" fill="none" stroke="#28695c" stroke-width="4" stroke-linecap="round"/><text x="568" y="341" fill="#27314a" font-size="17" font-weight="700">BELONG</text><text x="568" y="368" fill="#667085" font-size="13">Fellowship and care</text>
+    <rect x="693" y="218" width="153" height="186" rx="18" fill="url(#card)"/><circle cx="769" cy="274" r="31" fill="#d4c5ed"/><path d="M769 252v43M752 265h34" stroke="#5c4778" stroke-width="6" stroke-linecap="round"/><text x="769" y="341" fill="#27314a" font-size="17" font-weight="700">GROW</text><text x="769" y="368" fill="#667085" font-size="13">Classes and mentoring</text>
+  </g>
+  <text x="54" y="479" fill="#f3c7b8" font-family="Arial,sans-serif" font-size="14" font-weight="700">A ministry platform built for RCCG The King's Palace.</text>
+</svg>
